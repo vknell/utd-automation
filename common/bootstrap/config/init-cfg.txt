@@ -1,0 +1,6 @@
+type=dhcp-client 
+ip-address= 
+default-gateway= 
+netmask=
+hostname=fw-test
+op-command-modes=mgmt-interface-swap
