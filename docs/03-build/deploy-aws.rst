@@ -11,6 +11,59 @@ In this activity you will:
 - Deploy the lab infrastucture plan
 - Confirm firewall bootstrap completion
 
+
+
+Login on Linux dedicated hosted VM
+-----------------------------
+Instructor has to give you an URL to connect on predeployed VM prepared by hiself (POD Machine).
+
+
+Log into the AWS console
+----------------------------
+
+From the POD machine you can open firefox and navigate to the `AWS URL <https://console.aws.amazon.com/>`
+
+``https://console.aws.amazon.com/``
+
+Log in with your AWS credentials. 
+You will create a specific role for terraform in a few minutes.
+
+
+Create IAM account for this UTD
+-------------------------------
+
+From AWS console, go to "Services" and choose "IAM" as shown:
+
+
+
+
+Clic on "Users" as shown:
+
+
+
+Clic "Add User", give a name and define "Access type" for "Programmatic access" as shown after that clic on "Next Permissions":
+
+
+
+
+
+
+Next clic "Create Group".Provide a group name and filter "policy Type" menu by "AmazonEC2", and select the first row which "AmazonECFullAccess" and clic "Create Group" as shown :
+
+
+Clic "Next:Review" as shown:
+
+
+Finaly clic "Create User" as shown:
+
+
+Download the newly cerated user "Access key ID" and "Secret access key" by cliking "Download .csv".These credentials are needed to connect to Amazone EC service through Terraform.
+We recommand also to copy/paste theses information in a "notepad" to use them to create AWS environment varaibles at next step.
+
+After that clic Close.
+
+
+
 Create AWS environment variables
 --------------------------------
 We will be deploying the lab infrastucture in AWS using Terraform.  A
@@ -25,22 +78,49 @@ will use environment variables. Because in production you will upload your terra
 if you hardcode your access key and secret access to any file and push with github to a public repo
 you will create a security issue.
 
-Create the environment variables.
+In using Terminal, create the environment variables by typing:
 
 .. code-block:: bash
 
     $ export AWS_ACCESS_KEY_ID=your-access-key-here
     $ export AWS_SECRET_ACCESS_KEY=your-secret-key-here
 
-for windows the environment variable can be created with :
 
-.. code-block:: bash
 
-    > set AWS_ACCESS_KEY_ID="your-access-key-here"
-    > set AWS_SECRET_ACCESS_KEY="your-secret-key-here"
+
 
 Create an SSH key-pair
 ----------------------
+
+VOIR VICTOR -------------------------------->>>>>>>>>>  PAS CLAIR
+
+
+
+
+
+
+
+
+Method from AWS Console:
+Click on "Services" and "EC2" as shown :
+
+
+Clic on "Key Pairs" as shown:
+
+Clic Create Key Pair as shown :
+
+Give it a name and clic "Create":
+
+When prompted save your Key Pair you just created.
+
+
+
+
+
+
+HackLab Method:
+
+
 All AWS EC2 instances are required to have an SSH key-pair defined when the
 instance is created.  This is done to ensure secure access to the instance will
 be available once it is created.
@@ -55,13 +135,39 @@ directory.
 For windows you can create your public certificat with puttygen, please verify
 the option rsa at 1024 bit is selected. Put the certifcat in the hacklad folder.
 
+
+
+
+Create terraform Environment :
+------------------------------
+On your POD Machine, create a directory work space with Terminal :
+
+mkdir ~/UTD
+
+
+
+Clone the lab software repository
+---------------------------------
+Once you have successfully install Git / Terraform / Ansible you will need to clone
+the GitHub repository used in this lab.  This repository (or *repo*) contains
+the files needed to deploy the network and compute infrastructure we'll be
+working with.
+
+.. code-block:: bash
+
+    $ git clone https://github.com/vknell/udt-automation
+
+You are now ready to deploy the lab infrastructure.
+
+
+
 Create the Terraform variables
 ------------------------------
 Change into the AWS deployment directory.
 
 .. code-block:: bash
 
-    $ cd ~/hacklab/
+    $ cd ~/UTD
 
 In this directory you will find the three main files associated with a
 Terraform plan: ``main.tf``, ``variables.tf``, and ``outputs.tf``.  View the
@@ -79,6 +185,8 @@ code values into the plan, the file ``variables.tf`` will be used to declare
 the variables that will be used in the plan (but not necessarily their values).
 The ``outputs.tf`` file will define the values to display that result from
 applying the plan.
+
+
 
 Verify your region directly in the variables file, ``variables.tf``it's important to update it 
 for the lab.
@@ -183,7 +291,10 @@ with the public IP addresses of the VM-Series firewall management and untrust
 interfaces.  However, the VM-Series firewall and VPN AWS connection can take up to *ten minutes* to
 complete the initial bootstrap process.
 
-It is recommended that you skip ahead and read the :doc:`../03-run/terraform/background-terraform` section while you wait.
+
+
+
+attentioN  MODIFIER ::::::   It is recommended that you skip ahead and read the :doc:`../03-run/terraform/background-terraform` section while you wait.
 
 
 Confirm firewall bootstrap completion
