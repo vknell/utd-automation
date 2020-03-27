@@ -1,3 +1,7 @@
+=====================================
+Activity 1: AWS Deploy your first VPC
+=====================================
+
 Architecture de l’infrastructure à déployer sur AWS :
 
 .. figure:: architecture cible.png

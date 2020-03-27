@@ -1,6 +1,6 @@
-======================
-Dynamic Address Groups
-======================
+==================================
+Activity 4: Dynamic Address Groups
+==================================
 
 In this activity you will:
 

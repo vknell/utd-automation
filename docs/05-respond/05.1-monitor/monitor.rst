@@ -1,6 +1,6 @@
-===================
-Cloud Monitoring
-===================
+============================
+Activity 4: Cloud Monitoring
+============================
 
 In this activity you will:
 

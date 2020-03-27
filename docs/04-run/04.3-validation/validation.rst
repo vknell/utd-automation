@@ -1,6 +1,6 @@
-==================
-Validation Testing
-==================
+==============================
+Activity 3: Validation Testing
+==============================
 
 In this activity you will:
 

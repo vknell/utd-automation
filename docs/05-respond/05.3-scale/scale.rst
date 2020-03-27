@@ -1,6 +1,6 @@
-===============
-Compute Scaling
-===============
+===========================
+Activity 4: Compute Scaling
+===========================
 
 In this activity you will:
 

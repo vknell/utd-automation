@@ -1,6 +1,6 @@
-========================================
-Activity 2: Automation Build - Terraform
-========================================
+=============================
+Activity 2: Build - Terraform
+=============================
 
 In this activity you will:
 
