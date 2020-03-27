@@ -6,95 +6,80 @@ Use PAN-OS API with Terraform and Ansible to deploy a single VPC architecture
 ## Getting Started
 
 Instructor Guide
+See readthedocs
 
 ### Prerequisites
 
 #### AWS Account
 
+2 scenarios
+Create the env
 Create one account per student or refresh the password
 
-#### System
+
+Student can bring their own account if wanted
+
+#### Systems
 
 Create one VM per student with the following script
 Terraform used here
+AWS account required
 
+#### IAM Users
 
-#### Software
-
-- linux based os (tested on Ubuntu 18.04 LTS)
-- docker
-- docker compose
+Create an admin account to handle the UTD
 
 ### Changes
 
 Change IP from Logstash and Kibana to point toward Elasticsearch IP
 
 ---
-1. *kibana/config/kibana.yml*
+1. *aws account*
 ```
-elasticsearch.hosts: [ "http://192.168.45.101:9200" ]
-```
-
-2. *logstash/config/logstash.yml*
-```
-xpack.monitoring.elasticsearch.hosts: [ "http://192.168.45.101:9200" ]
+$ export AWS_ACCESS_KEY_ID=your-access-key-here
+$ export AWS_SECRET_ACCESS_KEY=your-secret-key-here
 ```
 
-3. *logstash/pipeline/PAN-OS9.conf*
+2. *number or users*
 ```
-output {hosts => ["192.168.45.101:9200"]}
+aws.ami.number: NUMBER OF STUDENTS
 ```
 
-4. *logstash/pipeline/logstash.conf*
-```
-output {hosts => ["192.168.45.101:9200"]}
-```
 ---
-
-To change the address using vi enter the following command:
-```
-:%s/192.168.45.101/YOURIP/g
-```
 
 ### Ubuntu 18.04 LTS
 
 Installation on Ubuntu LTS 18.04
 
 ```
-git clone https://github.com/damray/panelk
-sudo apt install docker docker-compose
-sudo systemctl start docker
-sudo systemctl enable docker
-cd panelk
-# See **changes** first
-sudo docker-compose up
+
 ```
 
 ## To Do
 ​
 **Next steps**
-- [x] Ingestion
-- [x] Global Protect
-- [ ] Threat logs
-- [ ] Traffic logs
-- [ ] System logs - parse per event ID (global protect and others)
+- [x] Create utd-admin
+- [ ] create user group for utds
+- [x] Guacamole
+- [ ] NGINX
+- [ ] Let's Encrypt
+- [ ] Automate stuff
 ​
 
 **Optional**
-- [ ] monitor global protect user delta between connection and disconnection
-- [ ] automate provisionning to have less manual config
-- [ ] beats ?
+- [ ] 
+- [ ] 
+- [ ] 
 
 ## References
 
-[Elastic Search](https://www.elastic.co/guide/en/kibana/current/saved-objects-api-import.html)
-
-[Docker Compose](docs.docker.com/compose/compose-file)
 
 ## Authors
-* **Damien Raynal** - *initial work*
+
 * **Victor Knell** - *main author*
 * **Franck Verstraete** - *main author*
+* **Damien Raynal** - *initial work*
+* **Hamza Sahli** - *initial work*
 
 ### Contributors 
 
