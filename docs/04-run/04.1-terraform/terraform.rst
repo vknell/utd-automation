@@ -1,6 +1,6 @@
-=======================
-Terraform Configuration
-=======================
+================================
+Activity 3: Build with Terraform
+================================
 
 In this activity you will:
 

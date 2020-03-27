@@ -53,13 +53,15 @@ Learning Outcomes
 .. toctree::
     :maxdepth: 2
     :hidden:
-    :caption: 1
-    02-cloud-discovery/step-by-step
+    :caption: cloud discovery
+
+    02-cloud-discovery/aws/step-by-step
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: build
+
     03-build/deploy-aws
 
 .. toctree::
@@ -67,20 +69,18 @@ Learning Outcomes
     :hidden:
     :caption: run
 
-    04-run/04.1-terraform/background-terraform
-    04-run/04.1-terraform/activities-terraform
-    04-run/04.2-ansible/background-ansible
-    04-run/04.2-ansible/activities-ansible
-    04-run/04.3-validation
+    04-run/04.1-terraform/terraform
+    04-run/04.2-ansible/ansible
+    04-run/04.3-validation/validation
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: respond
 
-    05-respond/monitor
-    05-respond/dag
-    05-respond/scale
+    05-respond/05.1-monitor/monitor
+    05-respond/05.2-dag/dag
+    05-respond/05.3-scale/scale
     
 .. toctree::
     :maxdepth: 2
@@ -105,3 +105,5 @@ Learning Outcomes
     :caption: appendix
 
     08-appendix/terraform-commit
+    04-run/04.1-terraform/background-terraform
+    04-run/04.2-ansible/background-ansible
