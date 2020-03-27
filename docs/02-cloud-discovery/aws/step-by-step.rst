@@ -4,12 +4,13 @@ Activity 1: AWS Deploy your first VPC
 
 Architecture de l’infrastructure à déployer sur AWS :
 
-.. figure:: architecture cible.png
+.. figure:: architecture-cible.png
 
 Se connecter sur la console AWS
 
 XXXXXXXXXX
-
+TO DO
+xxxxxxxxxx
 
 
 
@@ -19,7 +20,7 @@ Création d’un VPC (Virtual Private Cloud)
 
 Etape 1 : Allez dans Services, faites une recherche sur VPC et choisissez le service VPC :
 
-.. figure:: aws console access.png
+.. figure:: aws-console-access.png
 
 Etape 2 : Allez à Virtual Private Cloud > Your VPC > Create VPC
 
