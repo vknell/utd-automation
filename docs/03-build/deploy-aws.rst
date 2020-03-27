@@ -1,6 +1,6 @@
-====================
-Lab Deployment (AWS)
-====================
+========================================
+Activity 2: Automation Build - Terraform
+========================================
 
 In this activity you will:
 

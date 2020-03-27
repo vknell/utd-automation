@@ -53,44 +53,55 @@ Learning Outcomes
 .. toctree::
     :maxdepth: 2
     :hidden:
-    :caption: build
+    :caption: 1
+    02-cloud-discovery/step-by-step
 
-    02-build/deploy-aws
+.. toctree::
+    :maxdepth: 2
+    :hidden:
+    :caption: build
+    03-build/deploy-aws
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: run
 
-    03-run/terraform/background-terraform
-    03-run/terraform/activities-terraform
-    03-run/ansible/background-ansible
-    03-run/ansible/activities-ansible
-    03-run/validation
+    04-run/04.1-terraform/background-terraform
+    04-run/04.1-terraform/activities-terraform
+    04-run/04.2-ansible/background-ansible
+    04-run/04.2-ansible/activities-ansible
+    04-run/04.3-validation
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: respond
 
-    04-respond/monitor
-    04-respond/dag
-    04-respond/scale-out
+    05-respond/monitor
+    05-respond/dag
+    05-respond/scale
     
+.. toctree::
+    :maxdepth: 2
+    :hidden:
+    :caption: prisma cloud
+
+    06-prisma-cloud/prisma-cloud
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: summary
 
-    05-summary/summary
-    05-summary/comparison
-    05-summary/cleanup
-    05-summary/moreinfo
+    07-summary/summary
+    07-summary/comparison
+    07-summary/cleanup
+    07-summary/moreinfo
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: appendix
 
-    06-appendix/terraform-commit
+    08-appendix/terraform-commit
