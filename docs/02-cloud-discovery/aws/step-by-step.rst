@@ -59,25 +59,22 @@ Provide a group name **utd** and filter **policy Type** menu by **FullAccess**, 
 	- AmazonS3FullAccess
 	- CloudWatchFullAccess
 	- AmazonVPCFullAccess
-Then click "Create Group":
+Then click **Create Group**:
 
 .. figure:: aws-iam-user-group-creation.png
 
 
-Clic **Next:Review** as shown and finally clic **Create User**:
+Clic **Next:Review** and finally clic **Create User**:
 
 .. figure:: aws-iam-user-review.png
 
 
-You should end up on the user creation page with a success:
+The user is now created, download the CSV file to retrieve the password. After this step you can click on **Close**:
 
 .. figure:: aws-iam-user-success-csv.png
 
 
-Download the newly created user "Access key ID" and "Secret access key" by clicking "Download .csv".These credentials are needed to connect to Amazon EC2 service through Terraform.
-We recommand also to copy/paste theses information in a "notepad" to use them to create AWS environment variables.
 
-You can click on close.
 
 
 Création d’un VPC (Virtual Private Cloud)

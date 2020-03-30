@@ -58,15 +58,11 @@ Clic **Next:Review** as shown and finally clic **Create User**:
 .. figure:: aws-iam-user-review.png
 
 
-You should end up on the user creation page with a success:
+The API user has been created, download the "Access key ID" and "Secret access key" by clicking "Download .csv".These credentials are needed to connect to Amazon EC2 service through Terraform.
+We recommand also to copy/paste theses information in a "notepad" to use them to create AWS environment variables.
+After this step, you can click on close:
 
 .. figure:: aws-iam-user-success-csv.png
-
-
-Download the newly created user "Access key ID" and "Secret access key" by clicking "Download .csv".These credentials are needed to connect to Amazon EC2 service through Terraform.
-We recommand also to copy/paste theses information in a "notepad" to use them to create AWS environment variables.
-
-You can click on close.
 
 
 Create AWS environment variables
