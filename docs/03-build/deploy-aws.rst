@@ -14,12 +14,12 @@ In this activity you will:
 
 
 Login on Linux dedicated hosted VM
------------------------------
+----------------------------------
 Instructor has to give you an URL to connect on predeployed VM prepared by hiself (POD Machine).
 
 
 Log into the AWS console
-----------------------------
+------------------------
 
 From the POD machine you can open firefox and navigate to the `AWS URL <https://console.aws.amazon.com/>`_
 
@@ -31,40 +31,40 @@ You will create a specific role for terraform in a few minutes.
 Create IAM account for this Activity
 ------------------------------------
 
-From AWS console, go to "Services" and choose "IAM" as shown:
+From AWS console, go to **Services** and choose **IAM** as shown:
 
 .. figure:: aws-iam.png
 
-Clic on "Users" as shown:
+
+Clic on **Users** as shown:
 
 .. figure:: aws-iam-user.png
 
 
-Clic "Add User", give a name and define "Access type" for "Programmatic access" as shown after that clic on "Next Permissions":
+Clic **Add User**, give a name and define **Access type** for **Programmatic access** as shown after that clic on **Next Permissions**:
 
 .. figure:: aws-iam-user-add.png
 
 .. figure:: aws-iam-user-creation.png
 
 
-Next select the utd group previously created in `Activity 1 <https://utd-automation.readthedocs.io/en/latest/02-cloud-discovery/aws/step-by-step.html#log-into-the-aws-console>`_.
-
+Next select the **utd** group previously created in `Activity 1 <https://utd-automation.readthedocs.io/en/latest/02-cloud-discovery/aws/step-by-step.html#log-into-the-aws-console>`_. And click on **Next:Review**:
 .. figure:: aws-iam-user-to-group.png
 
 
 FOR ACTIVITY 1
 --------------
-Next clic "Create Group". 
+Next clic **Create Group**:
 
 .. figure:: aws-iam-user-create-group.png
 
 
-Provide a group name "utd" and filter "policy Type" menu by "FullAccess", and select the  clic "Create Group" as shown :
+Provide a group name "utd" and filter "policy Type" menu by "FullAccess", and select the  clic "Create Group" as shown:
 
 .. figure:: aws-iam-user-group-creation.png
 
 
-Provide a group name and filter "policy Type" menu by "AmazonEC2", and select the first row which "AmazonECFullAccess" and clic "Create Group" as shown :
+Provide a group name and filter "policy Type" menu by "AmazonEC2", and select the first row which "AmazonECFullAccess" and clic "Create Group" as shown:
 
 .. figure:: aws-iam-user-create-group.png
 
@@ -72,12 +72,13 @@ Provide a group name and filter "policy Type" menu by "AmazonEC2", and select th
 
 FOR ACTIVITY 2
 --------------
-Clic "Next:Review" as shown and finally clic "Create User":
+Clic **Next:Review** as shown and finally clic **Create User**:
 
 .. figure:: aws-iam-user-review.png
 
 
 You should end up on the user creation page with a success:
+
 .. figure:: aws-iam-user-success-csv.png
 
 
