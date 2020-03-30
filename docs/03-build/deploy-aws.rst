@@ -49,29 +49,10 @@ Clic **Add User**, give a name and define **Access type** for **Programmatic acc
 
 
 Next select the **utd** group previously created in `Activity 1 <https://utd-automation.readthedocs.io/en/latest/02-cloud-discovery/aws/step-by-step.html#log-into-the-aws-console>`_. And click on **Next:Review**:
+
 .. figure:: aws-iam-user-to-group.png
 
 
-FOR ACTIVITY 1
---------------
-Next clic **Create Group**:
-
-.. figure:: aws-iam-user-create-group.png
-
-
-Provide a group name "utd" and filter "policy Type" menu by "FullAccess", and select the  clic "Create Group" as shown:
-
-.. figure:: aws-iam-user-group-creation.png
-
-
-Provide a group name and filter "policy Type" menu by "AmazonEC2", and select the first row which "AmazonECFullAccess" and clic "Create Group" as shown:
-
-.. figure:: aws-iam-user-create-group.png
-
-
-
-FOR ACTIVITY 2
---------------
 Clic **Next:Review** as shown and finally clic **Create User**:
 
 .. figure:: aws-iam-user-review.png

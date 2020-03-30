@@ -26,11 +26,63 @@ Create an IAM account
 It is a best practice not to use the root account to create workloads and modify any configuration.
 You will create a user and a group to access the console with the proper rights.
 
-.. figure:: aws-user-create.png
+Create IAM account for this Activity
+------------------------------------
 
+From AWS console, go to **Services** and choose **IAM** as shown:
+
+.. figure:: aws-iam.png
+
+
+Clic on **Users**:
+
+.. figure:: aws-iam-user.png
+
+
+Clic **Add User**, give a name and define **Access type** for **Programmatic access** as shown after that clic on **Next Permissions**:
+
+.. figure:: aws-iam-user-add.png
+
+.. figure:: aws-iam-user-creation.png
+
+
+Next clic **Create Group**:
+
+.. figure:: aws-iam-user-create-group.png
+
+
+Provide a group name **utd** and filter **policy Type** menu by **FullAccess**, and add the following rights:
+	- AWSMarketplaceFullAccess
+	- AmazonEC2FullAccess
+	- AWSLambdaFullAccess
+	- ElasticLoadBalancingFullAccess
+	- AmazonS3FullAccess
+	- CloudWatchFullAccess
+	- AmazonVPCFullAccess
+Then click "Create Group":
+
+.. figure:: aws-iam-user-group-creation.png
+
+
+Clic **Next:Review** as shown and finally clic **Create User**:
+
+.. figure:: aws-iam-user-review.png
+
+
+You should end up on the user creation page with a success:
+
+.. figure:: aws-iam-user-success-csv.png
+
+
+Download the newly created user "Access key ID" and "Secret access key" by clicking "Download .csv".These credentials are needed to connect to Amazon EC2 service through Terraform.
+We recommand also to copy/paste theses information in a "notepad" to use them to create AWS environment variables.
+
+You can click on close.
 
 
 Création d’un VPC (Virtual Private Cloud)
+-----------------------------------------
+
 
 Etape 1 : Allez dans Services, faites une recherche sur VPC et choisissez le service VPC :
 
@@ -65,6 +117,7 @@ Etape 5 : Dans Edit DNS hostnames, cochez le bouton enable et sauvegardez
 
 
 Création des sous réseaux AWS (subnets)
+---------------------------------------
 
 Le bloc de réseaux IPv4 créé avec le VPC sera maintenant segmenté en plusieurs sous réseaux. Vous pouvez créer des sous-réseaux ayant des plages d’adresses IP qui feront partis du bloc IPv4 du VPC.
 Les sous réseaux seront utilisés comme suit :
@@ -97,6 +150,8 @@ Etape 3 : Répétez l’étape précédente pour les deux autres sous réseaux U
 
 
 Création d’une passerelle Internet IGW
+--------------------------------------
+
 La création d’un passerelle Internet est indispensable pour permettre au VPC de se connecter à Internet. Une fois que la passerelle est créée, il sera nécessaire de l’attacher à un VPC.
 
 
@@ -126,6 +181,7 @@ Etape 3 : Sélectionner le VPC MonVPC et sauvegarder
 
 
 Création des tables de routage
+------------------------------
 
 Les tables de routage vous permettent d'attribuer une connectivité telle que des passerelles Internet et des passerelles par défaut à des groupes spécifiques de points de terminaison. Rappelez-vous que tous les points d'extrémité dans le VPC peuvent se connecter de manière native à n'importe quel autre point d'extrémité dans le bloc CIDR VPC affecté (exemple : 10.2.0.0/16). Cela ne peut pas être modifié par une table de routage. Il existe une table de routage principale créée par défaut pour un VPC, et tous les sous-réseaux qui ne sont pas affectés à une table de routage personnalisée sont affectés à la table de routage principale du VPC. Par défaut, la table de routage principale route uniquement vers le bloc CIDR VPC. Les tables de routage peuvent contrôler toute connectivité de sous-réseau IP en
 dehors du bloc CIDR VPC.
@@ -578,6 +634,8 @@ Vous arrivez à l’étape finale du présent Lab. Vous pouvez ainsi tester la c
 
 
 Suppression du VPC
+------------------
+
 Allez dans Services > EC2 > VPC > Your VPC, sélectionnez le VPC MonVPC ensuite allez dans Actions > Delete VPC et ensuite confirmez la suppression.
 
 .. figure:: create-vpc-72.png
