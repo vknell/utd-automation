@@ -2,4 +2,4 @@
 Activity 5: Prisma Cloud
 ========================
 
-Soon
+.. figure:: work-in-progress.png

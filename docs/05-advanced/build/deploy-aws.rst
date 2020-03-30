@@ -1,6 +1,9 @@
-=============================
-Activity 2: Build - Terraform
-=============================
+=================================
+Activity 5: Advanced architecture
+=================================
+
+.. figure:: work-in-progress.png
+
 
 In this activity you will:
 
@@ -26,43 +29,6 @@ From the POD machine you can open firefox and navigate to the `AWS URL <https://
 
 Log in with your AWS credentials. 
 You will create a specific role for terraform in a few minutes.
-
-
-Create IAM account for this Activity
-------------------------------------
-
-From AWS console, go to **Services** and choose **IAM** as shown:
-
-.. figure:: aws-iam.png
-
-
-Clic on **Users** as shown:
-
-.. figure:: aws-iam-user.png
-
-
-Clic **Add User**, give a name and define **Access type** for **Programmatic access** as shown after that clic on **Next Permissions**:
-
-.. figure:: aws-iam-user-add.png
-
-.. figure:: aws-iam-user-creation.png
-
-
-Next select the **utd** group previously created in `Activity 1 <https://utd-automation.readthedocs.io/en/latest/02-cloud-discovery/aws/step-by-step.html#log-into-the-aws-console>`_. And click on **Next:Review**:
-
-.. figure:: aws-iam-user-to-group.png
-
-
-Clic **Next:Review** as shown and finally clic **Create User**:
-
-.. figure:: aws-iam-user-review.png
-
-
-The API user has been created, download the "Access key ID" and "Secret access key" by clicking "Download .csv".These credentials are needed to connect to Amazon EC2 service through Terraform.
-We recommand also to copy/paste theses information in a "notepad" to use them to create AWS environment variables.
-After this step, you can click on close:
-
-.. figure:: aws-iam-user-success-csv.png
 
 
 Create AWS environment variables
