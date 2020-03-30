@@ -199,12 +199,15 @@ comme l’ICMP, le SSH et le HTTPS
 
 
 Utrusted_SG – inbound rules
+
 .. figure:: create-vpc-20.png
 
 Management_SG – inbound rules
+
 .. figure:: create-vpc-21.png
 
 Trusted_SG – inbound rules
+
 .. figure:: create-vpc-22.png
 
 Etape 1: Allez dans Services > EC2 > NETWORK & SECURITY > Security Groups > Create Security
