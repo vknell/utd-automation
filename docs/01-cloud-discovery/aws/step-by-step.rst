@@ -18,7 +18,7 @@ Log into the AWS console
 
 From the POD machine you can open firefox and navigate to the `AWS URL <https://console.aws.amazon.com/>`_
 
-Log in with your AWS **utd-console** account.
+Log in with your AWS **utd-console** account see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_.
 
 
 Création d’un VPC (Virtual Private Cloud)

@@ -36,7 +36,7 @@ Clic on **Users** as shown:
 .. figure:: aws-iam-user.png
 
 Create IAM account for console access
-^^^
+=====================================
 
 Clic **Add User**, give a name and define **Access type** for **Programmatic access** as shown after that clic on **Next Permissions**:
 
@@ -64,10 +64,11 @@ Then click **Create Group**:
 .. figure:: aws-iam-user-group-creation-console.png
 
 Then select the group:
+
 .. figure:: aws-iam-user-to-group-console.png
 
 
-Clic **Next:Review** and finally clic **Create User**:
+Click **Next:Tags**, you can leave it empty and click **Next:Review** and finally click **Create User**:
 
 .. figure:: aws-iam-user-review-console.png
 
@@ -78,16 +79,19 @@ The user is now created, download the CSV file to retrieve the password. After t
 
 
 Create IAM account for API access
-^^^
+=================================
 
-Clic **Add User**, give a name and define **Access type** for **Programmatic access** as shown after that clic on **Next Permissions**:
+Clic **Add User**:
 
 .. figure:: aws-iam-user-add-api.png
+
+
+Give it a name and define **Access type** for **Programmatic access** as shown after that clic on **Next Permissions**:
 
 .. figure:: aws-iam-user-creation-api.png
 
 
-Next select the **utd** group previously created in `Activity 1 <https://utd-automation.readthedocs.io/en/latest/02-cloud-discovery/aws/step-by-step.html#log-into-the-aws-console>`_. And click on **Next:Review**:
+Next select the **utd** group previously created in `Activity 1 <https://utd-automation.readthedocs.io/en/latest/01-cloud-discovery/aws/step-by-step.html#log-into-the-aws-console>`_. And click on **Next:Tags**:
 
 .. figure:: aws-iam-user-to-group-api.png
 
