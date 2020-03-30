@@ -6,6 +6,7 @@ In this activity you will create 2 users and a group for AWS.
 
 Login on Linux dedicated hosted VM
 ----------------------------------
+
 Instructor has to give you an URL to connect on predeployed VM prepared by himself (POD Machine).
 
 

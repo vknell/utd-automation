@@ -1,5 +1,5 @@
 ========================
-Activity 5: Prisma Cloud
+Activity 6: Prisma Cloud
 ========================
 
 .. figure:: work-in-progress.png

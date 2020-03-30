@@ -1,6 +1,6 @@
-=====================
-Ansible Configuration
-=====================
+===================================
+Activity 3.2: Ansible Configuration
+===================================
 
 In this activity you will:
 

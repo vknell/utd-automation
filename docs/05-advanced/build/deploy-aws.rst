@@ -1,5 +1,5 @@
 =================================
-Activity 5: Advanced architecture
+Activity 5: Advanced Architecture
 =================================
 
 .. figure:: work-in-progress.png

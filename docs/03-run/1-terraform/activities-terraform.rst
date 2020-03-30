@@ -1,6 +1,6 @@
-=======================
-Terraform Configuration
-=======================
+=====================================
+Activity 3.1: Terraform Configuration
+=====================================
 
 In this activity you will:
 

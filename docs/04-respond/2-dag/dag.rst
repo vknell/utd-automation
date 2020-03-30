@@ -1,6 +1,6 @@
-======================
-Dynamic Address Groups
-======================
+=================
+Activity 4.2: DAG
+=================
 
 In this activity you will:
 
