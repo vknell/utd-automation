@@ -64,7 +64,7 @@ Installation on Ubuntu LTS 18.04
 - [ ] NGINX
 - [ ] Let's Encrypt
 - [ ] Automate stuff
-​
+​- [ ] Separate in 3 gits, DOC, INSTRUCTOR, UTD
 
 **Optional**
 - [ ] 

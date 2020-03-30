@@ -14,15 +14,19 @@ Instructor has to give you an URL to connect on predeployed VM prepared by hisel
 
 
 Log into the AWS console
-----------------------------
+------------------------
 
-From the POD machine you can open firefox and navigate to the `AWS URL <https://console.aws.amazon.com/>`
-
-``https://console.aws.amazon.com/``
+From the POD machine you can open firefox and navigate to the `AWS URL <https://console.aws.amazon.com/>`_
 
 Log in with your AWS credentials. 
 You will create a specific role for terraform in a few minutes.
 
+Create an IAM account
+
+It is a best practice not to use the root account to create workloads and modify any configuration.
+You will create a user and a group to access the console with the proper rights.
+
+.. figure:: aws-user-create.png
 
 
 
