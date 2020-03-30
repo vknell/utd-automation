@@ -39,23 +39,26 @@ From AWS console, go to "Services" and choose "IAM" as shown:
 
 Clic on "Users" as shown:
 
-
+.. figure:: work-in-progress.png
 
 Clic "Add User", give a name and define "Access type" for "Programmatic access" as shown after that clic on "Next Permissions":
 
 
-
+.. figure:: work-in-progress.png
 
 
 
 Next clic "Create Group".Provide a group name and filter "policy Type" menu by "AmazonEC2", and select the first row which "AmazonECFullAccess" and clic "Create Group" as shown :
 
+.. figure:: work-in-progress.png
 
 Clic "Next:Review" as shown:
 
+.. figure:: work-in-progress.png
 
 Finaly clic "Create User" as shown:
 
+.. figure:: work-in-progress.png
 
 Download the newly cerated user "Access key ID" and "Secret access key" by cliking "Download .csv".These credentials are needed to connect to Amazone EC service through Terraform.
 We recommand also to copy/paste theses information in a "notepad" to use them to create AWS environment varaibles at next step.
@@ -104,16 +107,23 @@ VOIR VICTOR -------------------------------->>>>>>>>>>  PAS CLAIR
 Method from AWS Console:
 Click on "Services" and "EC2" as shown :
 
+.. figure:: work-in-progress.png
 
 Clic on "Key Pairs" as shown:
 
+.. figure:: work-in-progress.png
+
 Clic Create Key Pair as shown :
+
+.. figure:: work-in-progress.png
 
 Give it a name and clic "Create":
 
+.. figure:: work-in-progress.png
+
 When prompted save your Key Pair you just created.
 
-
+.. figure:: work-in-progress.png
 
 
 
