@@ -274,6 +274,7 @@ Le pare-feu VM-Series sera déployé dans le VPC MonVPC créé précédemment. L
 Dans un premier temps le firewall sera déployé avec une seule interface qui est l’interface de management. Une fois déployé, vous allez lui associer les interfaces créées dans l’étape précédente.
 
 Ci-dessous les paramètres de la VM-Series à déployer :
+
 .. figure:: create-vpc-31.png
 
 Etape 1 : Allez dans Services > EC2 > Instances > Instances > Launch Instance, sélectionnez AWS Marketplace, faites une recherche sur Palo Alto Networks et sélectionnez VM-Series Next-Generation Firewall (BYOL and ELA)
@@ -291,8 +292,8 @@ Etape 4: Dans Add Storage, cliquez sur Next Next : Add Tags (aucune modification
 
 Etape 5 : Dans Add Tags, cliquez sur Next : Configure Security Group
 
-Etape 6 : Dans Configure Security Group, sélectionnez le groupe de sécurité Management_SG, et
-cliquez sur Review and Launch
+Etape 6 : Dans Configure Security Group, sélectionnez le groupe de sécurité Management_SG, et cliquez sur Review and Launch
+
 .. figure:: create-vpc-34.png
 
 
