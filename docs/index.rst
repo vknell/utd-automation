@@ -1,8 +1,3 @@
-.. AWS documentation master file, created by
-   sphinx-quickstart on wed nov 20 17:08:44 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 AWS Automation Lab Guide
 =========================================
 
@@ -47,40 +42,48 @@ Learning Outcomes
     :hidden:
     :caption: getting started
 
-    01-getting-started/requirements
-    01-getting-started/setup
+    00-getting-started/requirements
+    00-getting-started/setup
+    00-getting-started/aws-account
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: cloud discovery
 
-    02-cloud-discovery/aws/step-by-step
+    01-cloud-discovery/aws/step-by-step
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: build
 
-    03-build/deploy-aws
+    02-build/deploy-aws
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: run
 
-    04-run/1-terraform/terraform
-    04-run/2-ansible/ansible
-    04-run/3-validation/validation
+    03-run/1-terraform/activities-terraform
+    03-run/2-ansible/activities-ansible
+    03-run/3-validation/validation
 
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: respond
 
-    05-respond/1-monitor/monitor
-    05-respond/2-dag/dag
-    05-respond/3-scale/scale
+    04-respond/1-monitor/monitor
+    04-respond/2-dag/dag
+    04-respond/3-scale/scale
+
+.. toctree::
+    :maxdepth: 2
+    :hidden:
+    :caption: respond
+
+    05-advanced/build/deploy-aws
     
 .. toctree::
     :maxdepth: 2
@@ -105,5 +108,5 @@ Learning Outcomes
     :caption: appendix
 
     08-appendix/terraform-commit
-    04-run/1-terraform/background-terraform
-    04-run/2-ansible/background-ansible
+    03-run/1-terraform/background-terraform
+    03-run/2-ansible/background-ansible
