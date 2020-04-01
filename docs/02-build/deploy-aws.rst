@@ -6,12 +6,19 @@ Activity 2: Lab Deployment (AWS)
 
 In this activity you will:
 
+- Clone lab's github repository
 - Create AWS environment variables
 - Create an SSH key-pair
 - Create the Terraform variables
 - Initialize the AWS Terraform provider
 - Deploy the lab infrastucture plan
 - Confirm firewall bootstrap completion
+
+
+
+
+
+You are now ready to deploy the lab infrastructure.
 
 Create AWS environment variables
 --------------------------------
@@ -53,7 +60,7 @@ Change into the AWS deployment directory.
 
 .. code-block:: bash
 
-    $ cd ~/multicloud-automation-lab/deployment/aws
+    $ cd ~/UTD/utd-automation/utd/basic/deployment/aws
 
 In this directory you will find the three main files associated with a
 Terraform plan: ``main.tf``, ``variables.tf``, and ``outputs.tf``.  View the
@@ -151,8 +158,15 @@ complete the initial bootstrap process.
 It is recommended that you skip ahead and read the :doc:`../03-run/terraform/background-terraform` section while you wait.
 
 
+Verify on AWS Console some elements created by terraform
+--------------------------------------------------------
+
+.. figure:: work-in-progress.png
+
+
+
 Confirm firewall bootstrap completion
------------------------------------------
+-------------------------------------
 SSH into the firewall with the following credentials.
 
 - **Username:** ``admin``

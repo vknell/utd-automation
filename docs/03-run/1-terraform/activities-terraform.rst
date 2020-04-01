@@ -17,7 +17,7 @@ First, change to the Terraform configuration directory.
 
 .. code-block:: bash
 
-    $ cd ~/multicloud-automation-lab/configuration/terraform
+    $ cd ~/UTD/utd-automation/utd/basic/configuration/terraform
 
 
 Provider Initialization
