@@ -39,7 +39,7 @@ Clic on **Users** as shown:
 Create IAM account for console access
 =====================================
 
-Clic **Add User**, give a name and define **Access type** for **Programmatic access** as shown after that clic on **Next Permissions**:
+Clic **Add User**, give a name and define **Access type** for **AWS Management Console access** as shown after that clic on **Next Permissions**:
 
 .. figure:: aws-iam-user-add-console.png
 
@@ -92,19 +92,23 @@ Give it a name and define **Access type** for **Programmatic access** as shown a
 .. figure:: aws-iam-user-creation-api.png
 
 
-Next select the **utd** group previously created in `Activity 1 <https://utd-automation.readthedocs.io/en/latest/01-cloud-discovery/aws/step-by-step.html#log-into-the-aws-console>`_. And click on **Next:Tags**:
+Next select the **utd** group previously created. And click on **Next:Tags**:
 
 .. figure:: aws-iam-user-to-group-api.png
 
 
-Clic **Next:Review** as shown and finally clic **Create User**:
+Clic **Next:Review**, and finally click on **Create User**:
 
 .. figure:: aws-iam-user-review-api.png
 
 
-The API user has been created, download the "Access key ID" and "Secret access key" by clicking "Download .csv".These credentials are needed to connect to Amazon EC2 service through Terraform.
-We recommand also to copy/paste theses information in a "notepad" to use them to create AWS environment variables.
+The API user has been created, download the **Access key ID** and **Secret access key** by clicking **Download .csv**.These credentials are needed to connect to Amazon EC2 service through Terraform.
+
+We also recommand to copy/paste theses information in a **notepad** to use them to create AWS environment variables.
 After this step, you can click on close:
 
 .. figure:: aws-iam-user-success-csv-api.png
+
+
+*This is the end of Activity 0*
 
