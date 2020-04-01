@@ -32,7 +32,8 @@ On your POD Machine, create a directory work space with Terminal :
 
 .. code-block:: bash
 
-    $ mkdir ~/UTD
+     $ mkdir ~/UTD
+    $ mkdir ~/UTD/first-step-terraform
 
 
 
@@ -43,7 +44,7 @@ the files needed to deploy the network and compute infrastructure we'll be worki
 
 .. code-block:: bash
 
-    $ cd ~/UTD
+    $ cd ~/UTD/first-step-terraform/
     $ git clone https://github.com/PaloAltoNetworks/terraform-templates/tree/master/sample
 
 
@@ -57,9 +58,8 @@ call modules responsible for instantiating the network, compute, and storage
 resources needed.
 
 In order for Terraform to do this it will need to authenticate to AWS using the
-AWS Access Key and Secret Key values that were presented in the Qwiklabs panel
-when the lab was started.  Rather than write these as Terraform variables, we
-will use Linux environment variables.
+AWS Access Key and Secret Key values of your IAM account for API access.
+Rather than write these as Terraform variables, we will use Linux environment variables.
 
 Create the environment variables.
 
@@ -114,7 +114,7 @@ Bucket Properties/Permissions???
 
 You will need to enter a globally unique bucket name. AWS will warn you if the
 name is not unique. Once the bucket is created, click on the newly created bucket
-and add four folders called config, license, software and content by clicking on
+and add four folders called **config**, **license**, **software** and **content** by clicking on
 Create Folder:
 
 .. figure:: work-in-progress.png
@@ -125,10 +125,9 @@ folders.
 
 .. figure:: work-in-progress.png
 
-Now let ’s proceed t o download t he boot strap files from Git Hub.
-Upload files the various buckets from the following
-link: https://github.com/PaloAltoNetworks/aws/tree/master/two-tier-
-sample/bootstrap
+Now let ’s proceed to download the boot strap files from Git Hub.
+Upload files the various buckets from the following link: https://github.com/PaloAltoNetworks/aws/tree/master/two-tier-sample/bootstrap
+
 
 .. figure:: work-in-progress.png
 
@@ -143,10 +142,12 @@ previously and click Upload:
 
 The two files should be listed under the folder:
 
-Upload the panupv2-all-contents-695-4002 file to the content folder.
-click on the content folder ins the S3 console and click Upload. Select Add Files
-and select the file (panupv2-all-contents-695-4002) downloaded previously and click
-Upload:
+.. figure:: work-in-progress.png
+
+Upload the **panupv2-all-contents-8225-5857** file to the **content** folder.
+click on the **content** folder ins the S3 console and click Upload. Select **Add Files**
+and select the file (panupv2-all-contents-8225-5857) downloaded previously and click
+**Upload**:
 
 .. figure:: work-in-progress.png
 
@@ -155,10 +156,25 @@ Once complet ed the file is listed under the folder content :
 .. figure:: work-in-progress.png
 
 
-----------------SOFTWARE ET LICENSE ici--------------------
-A discuter avec Victor
+
+Optional for Bootstrap: 
+If need upgrade automaticaly your VM after boot, you can Upload a PANOS image file to the **software** folder.
+click on the **software** folder ins the S3 console and click Upload. Select Add Files
+and select the file (example : PanOS_vm_9.0.1 ) retrieved from PANW support site, and click
+**Upload**:
 
 .. figure:: work-in-progress.png
+
+
+
+Optional for Bootstrap: 
+If need associate licenses (BYOL) automaticaly your FW VM after boot, you can Upload a Licenses file to the **license** folder.
+click on the **license** folder ins the S3 console and click Upload. Select Add Files
+and select the file (example : 0001A100110-threats.key) downloaded previously and click
+Upload:
+
+.. figure:: work-in-progress.png
+
 
 
 Create the Terraform variables
@@ -198,7 +214,7 @@ Modify/Adapt Configuration
 you need to modify the variables.tf file with a Terminal or text editor.
 
 
-To set the AWS access key and secret key :
+To set the AWS access key and secret key of your IAM account for API access ( see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_. ):
 
 # AWS Credential
 variable "access_key" {
@@ -242,8 +258,8 @@ type (BYOL or Bundle2):
 
 # Palo Alto VM-Series Firewall
 resource "aws_instance" "pavm" {
-ami = "${lookup(var.pavm_byol_ami_id, var.region)}"
-#ami = "${lookup(var.pavm_payg_bun2_ami_id, var.region)}"
+#ami = "${lookup(var.pavm_byol_ami_id, var.region)}"
+ami = "${lookup(var.pavm_payg_bun2_ami_id, var.region)}"
 availability_zone = "${var.availability_zone}"
 tenancy = "default"
 ebs_optimized = false
