@@ -47,6 +47,8 @@ Clic on **Users** as shown:
 
 .. figure:: aws-iam-user.png
 
+
+
 Create IAM account for console access
 =====================================
 
