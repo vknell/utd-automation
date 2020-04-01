@@ -58,7 +58,7 @@ call modules responsible for instantiating the network, compute, and storage
 resources needed.
 
 In order for Terraform to do this it will need to authenticate to AWS using the
-AWS Access Key and Secret Key values of your IAM account for API access.
+AWS Access Key and Secret Key values of your IAM account for API access ( see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_. ).
 Rather than write these as Terraform variables, we will use Linux environment variables.
 
 Create the environment variables.
