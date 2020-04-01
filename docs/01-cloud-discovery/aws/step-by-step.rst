@@ -40,7 +40,7 @@ Etape 3 : Remplissez le nom du VPC, le sous réseau, laissez les autres paramèt
 
 .. figure:: create-vpc-3.png
 
-Etape 4 : Sélectionnez le VPC MonVPC et allez dans Actions > Edit DNS hostnames
+Etape 4 : Sélectionnez le VPC **utd-activity1** et allez dans Actions > Edit DNS hostnames
 
 .. figure:: create-vpc-4.png
 
@@ -64,30 +64,35 @@ Le bloc de réseaux IPv4 créé avec le VPC sera maintenant segmenté en plusieu
 Les sous réseaux seront utilisés comme suit :
 
 .. figure:: create-vpc-6.png
++--------------+--------------+-------------+
+| Subnet       | Address      | Interface   |
++==============+==============+=============+
+| Management   | 10.2.0.0/24  | management  |
++--------------+--------------+-------------+
+| Internet     | 10.2.1.0/24  | internet    |
++--------------+--------------+-------------+
+| Web Server   | 10.2.2.0/24  | web         |
++--------------+--------------+-------------+
+
 
 Etape 1: allez dans VPC > Subnets > Create subnet
 
 .. figure:: create-vpc-7.png
 
-Etape 2 : Renseignez le nom, le VPC (MonVPC), la zone de disponibilité et la plage du sous réseau en se basant sur le tableau ci-dessus pour le subnet Management_Subnet et sauvegardez la configuration
+Etape 2 : Renseignez le nom, le VPC *utd-activity1*, choisissez la première zone d'availibility.
 
 .. figure:: create-vpc-8.png
 
-Etape 3 : Répétez l’étape précédente pour les deux autres sous réseaux Untrusted_Subnet et Trusted_Subnet
+.. figure:: create-vpc-8-1.png
+
+.. figure:: create-vpc-8-2.png
+
+.. figure:: create-vpc-8-3.png
+
+
+Etape 3 : Répétez l’étape précédente pour les deux autres sous réseaux *internet* et *web*.
 
 .. figure:: create-vpc-9.png
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Création d’une passerelle Internet IGW
@@ -96,29 +101,28 @@ Création d’une passerelle Internet IGW
 La création d’un passerelle Internet est indispensable pour permettre au VPC de se connecter à Internet. Une fois que la passerelle est créée, il sera nécessaire de l’attacher à un VPC.
 
 
-Etape 1 : Allez dans VPC > Internet Gateways > Create internet gateway et utilisez MonIGW comme nom
+Etape 1 : Allez dans VPC > Internet Gateways > Create internet gateway et utilisez *utd-activity1-igw* comme nom
 
 .. figure:: create-vpc-10.png
 
-Etape 2 : Sélectionnez l’IGW MonIGW et ensuite allez dans Actions > Attach to VPC
+.. figure:: create-vpc-10-1.png
 
+.. figure:: create-vpc-10-2.png
+
+
+Etape 2 : Sélectionnez l’IGW *utd-activity1-igw* et ensuite allez dans Actions > Attach to VPC
 
 .. figure:: create-vpc-11.png
 
 
-Etape 3 : Sélectionner le VPC MonVPC et sauvegarder
+Etape 3 : Sélectionner le VPC *utd-activity1* et sauvegarder
 
 .. figure:: create-vpc-12.png
 
 
+It may take up to a few minutes before the attached state goes to green.
 
-
-
-
-
-
-
-
+.. figure:: create-vpc-12-1.png
 
 
 Création des tables de routage
