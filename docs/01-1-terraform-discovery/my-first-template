@@ -2,8 +2,7 @@
 Activity 21-1: Terraform Discovery
 ==================================
 
-.. warning:: If you are working on the GCP lab, skip this page and proceed to :doc:`../03-run/terraform/background-terraform`.
-
+------------------A REVOIR---------
 In this activity you will:
 
 - Clone lab's github repository
@@ -13,6 +12,11 @@ In this activity you will:
 - Initialize the AWS Terraform provider
 - Deploy the lab infrastucture plan
 - Confirm firewall bootstrap completion
+------------------A REVOIR---------
+
+
+
+
 
 Open Terminal
 -------------
@@ -28,7 +32,7 @@ On your POD Machine, create a directory work space with Terminal :
 
 .. code-block:: bash
 
-    $mkdir ~/UTD
+    $ mkdir ~/UTD
 
 
 
