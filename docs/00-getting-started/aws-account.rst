@@ -10,6 +10,17 @@ Login on Linux dedicated hosted VM
 Instructor has to give you an URL to connect on predeployed VM prepared by himself (POD Machine).
 
 
+Create a root AWS account
+-------------------------
+If you do not have an AWS account already, go to
+https://aws.amazon.com/console/ and create an account. In order to continue you
+will need to add a method of payment to your AWS account. Use the following
+https://console.aws.amazon.com/billing/home#/paymentmethods
+If creating a new account, you may receive a phone call from AWS for verification
+purposes.
+
+
+
 Log into the AWS console
 ------------------------
 

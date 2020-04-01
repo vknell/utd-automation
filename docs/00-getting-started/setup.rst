@@ -45,6 +45,34 @@ VSCodium will be your automation tool during this lab.
 Speaker will show you how to use it.
 
 
+Open Terminal
+-------------
+
+.. figure:: work-in-progress.png
+
+
+Create terraform Environment :
+------------------------------
+On your POD Machine, create a directory work space with Terminal :
+
+mkdir ~/UTD
+
+
+
+Clone the lab software repository
+---------------------------------
+Once you have successfully install Git / Terraform / Ansible you will need to clone
+the GitHub repository used in this lab.  This repository (or *repo*) contains
+the files needed to deploy the network and compute infrastructure we'll be
+working with.
+
+.. code-block:: bash
+
+    $ cd ~/UTD
+    $ git clone https://github.com/vknell/udt-automation
+
+
+
 
 
 
