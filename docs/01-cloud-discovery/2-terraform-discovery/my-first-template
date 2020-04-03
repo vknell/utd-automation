@@ -21,7 +21,7 @@ In this activity you will:
 Open Terminal
 -------------
 
-.. figure:: img/work-in-progress.png
+    .. figure:: img/work-in-progress.png
 
 
 
@@ -30,7 +30,7 @@ Create terraform Environment :
 ------------------------------
 On your POD Machine, create a directory work space with Terminal :
 
-.. code-block:: bash
+    .. code-block:: bash
 
     $ mkdir ~/UTD
     $ mkdir ~/UTD/first-step-terraform
@@ -42,7 +42,7 @@ Clone the lab software repository
 you will need to clone the GitHub repository used in this lab.  This repository (or *repo*) contains
 the files needed to deploy the network and compute infrastructure we'll be working with.
 
-.. code-block:: bash
+    .. code-block:: bash
 
     $ cd ~/UTD/first-step-terraform/
     $ git clone https://github.com/PaloAltoNetworks/terraform-templates/tree/master/sample ~/utd
@@ -61,7 +61,7 @@ be available once it is created.
 
 click on EC2
 
-.. figure:: img/sshkeypair-1.png
+    .. figure:: img/sshkeypair-1.png
 
 Click Key Pairs
 
