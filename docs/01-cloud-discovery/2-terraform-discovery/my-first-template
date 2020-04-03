@@ -15,7 +15,7 @@ In this activity you will:
 
 
 .. image:: work-in-progress.png
-   :align: center
+    :align: center
 
 
 
@@ -32,10 +32,10 @@ Create terraform Environment :
 ------------------------------
 On your POD Machine, create a directory work space with Terminal :
 
-    .. code-block:: bash
+.. code-block:: bash
 
-    $ mkdir ~/UTD
-    $ mkdir ~/UTD/first-step-terraform
+$ mkdir ~/UTD
+$ mkdir ~/UTD/first-step-terraform
 
 
 
@@ -61,9 +61,9 @@ All AWS EC2 instances are required to have an SSH key-pair defined when the
 instance is created.  This is done to ensure secure access to the instance will
 be available once it is created.
 
-click on EC2
+click on EC2:
 
-    .. figure:: img/sshkeypair-1.png
+.. figure:: img/sshkeypair-1.png
 
 Click Key Pairs
 
