@@ -67,11 +67,18 @@ Click Key Pairs
 
 .. figure:: work-in-progress.png
 
+Clic Create key pair button:
+
+.. figure:: work-in-progress.png
+
 Give it a name:
 
 .. figure:: work-in-progress.png
 
-And click Create . When prompt ed save Key Pair you just created.
+And click Create .
+
+
+When prompted save Key Pair you just created in ~/UTD/first-step-terraform folder
 
 
 Create S3 Bucket for bootstrapping
@@ -209,7 +216,7 @@ variables.tf - Variables you can set for the deployment
 Modify/Adapt Configuration
 --------------------------
 
-you need to modify the variables.tf file with a Terminal or text editor.
+1. You need to modify the variables.tf file with a Terminal or text editor.
 
 
 To set the AWS access key and secret key of your IAM account for API access ( see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_. ):
@@ -228,28 +235,28 @@ Modify Region and AZ if needed:(The template is also setup to deploy in US East 
 
 # AWS Region and Availablility Zone
 variable "region" {
-default = "us-east-1"
+default = "us-west-2"
 }
 variable "availability_zone" {
-default = "us-east-1e"
+default = "us-west-2a"
 }
 
 
 
-Modify variables.tf with a Terminal or text editor with right information regarding SSH keypair:
+2. Modify variables.tf file with a Terminal or text editor with right information regarding SSH keypair:
 
 variable "pavm_key_name" {
 description = "Name of the SSH keypair to use in AWS."
-default = "panw-mlue"
+default = "ec2sshkeypair.pem"
 }
 variable "pavm_key_path" {
 description = "Path to the private portion of the SSH key specified."
-default = "keys/panw-mlue.pem"
+default = "~/UTD/first-step-terraform/ec2sshkeypair.pem"
 }
 
 
 
-you need to modify the deploy_panw.tf file with a Terminal or text editor.
+3. You need to modify the deploy_panw.tf file with a Terminal or text editor.
 
 In deploy_panw.tf you can adapt the AMI information regarding your licensing
 type (BYOL or Bundle2):
@@ -276,7 +283,7 @@ Name = "PAVM"
 }
 
 
-you need to modify the deploy_vpc.tf file with a Terminal or text editor.
+4. You need to modify the deploy_vpc.tf file with a Terminal or text editor.
 
 In deploy_vpc.tf you have to uncomment code to use Bootstrap S3 Bucket and give the S3 name bucket:
 # Create an endpoint for S3 bucket
@@ -432,3 +439,19 @@ To clean up the deployment, just run the following command
 $ terraform destroy
 
 it will automatically delete every object that was created by the template.
+
+
+
+What were bad things on this Activity:
+--------------------------------------
+
+- AWS Access key and AWS Secret key are visible and stored in vraiable.tf file.
+- It needs to prepare a S3 bucket from AWS Console before use this scripts Terraform. 
+- Methode for Bootstraping expose password administrator of the FW in S3 bucket with potentiel high risk.
+- Structure of scripts is not relevant for large deployment architecture. 
+
+
+
+Conclusion:
+-----------
+We can do better then let's go to next activity : **Build Multicloud**
