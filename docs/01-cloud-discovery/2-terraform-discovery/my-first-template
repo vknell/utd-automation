@@ -2,17 +2,17 @@
 Activity 1-2: Terraform Discovery
 =================================
 
-------------------A REVOIR---------
+
 In this activity you will:
 
-- Clone lab's github repository
+
 - Create AWS environment variables
 - Create an SSH key-pair
 - Create the Terraform variables
 - Initialize the AWS Terraform provider
 - Deploy the lab infrastucture plan
 - Confirm firewall bootstrap completion
-------------------A REVOIR---------
+
 
 
 
