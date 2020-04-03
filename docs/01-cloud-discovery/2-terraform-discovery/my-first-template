@@ -445,7 +445,7 @@ Confirm firewall bootstrap completion
 SSH into the firewall with the following credentials.
 
 - **Username:** ``admin``
-- **Password:** ``Ignite2019!``
+- **Password:** ``admin``
 
 .. code-block:: bash
 
