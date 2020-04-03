@@ -60,7 +60,7 @@ Change into the AWS deployment directory.
 
 .. code-block:: bash
 
-    $ cd ~/UTD/utd-automation/utd/basic/deployment/aws
+    $ cd ~/utd/utd-automation/utd/basic/deployment/aws   ----------A REVOIR-------------
 
 In this directory you will find the three main files associated with a
 Terraform plan: ``main.tf``, ``variables.tf``, and ``outputs.tf``.  View the

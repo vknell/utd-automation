@@ -32,7 +32,7 @@ On your POD Machine, create a directory work space with Terminal :
 
 .. code-block:: bash
 
-     $ mkdir ~/UTD
+    $ mkdir ~/UTD
     $ mkdir ~/UTD/first-step-terraform
 
 
@@ -45,29 +45,13 @@ the files needed to deploy the network and compute infrastructure we'll be worki
 .. code-block:: bash
 
     $ cd ~/UTD/first-step-terraform/
-    $ git clone https://github.com/PaloAltoNetworks/terraform-templates/tree/master/sample
+    $ git clone https://github.com/PaloAltoNetworks/terraform-templates/tree/master/sample ~/utd
 
 
 
 
 Create AWS environment variables
 --------------------------------
-We will be deploying the lab infrastucture in AWS using Terraform.  A
-predefined Terraform plan is provided that will initialize the AWS provider and
-call modules responsible for instantiating the network, compute, and storage
-resources needed.
-
-In order for Terraform to do this it will need to authenticate to AWS using the
-AWS Access Key and Secret Key values of your IAM account for API access ( see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_. ).
-Rather than write these as Terraform variables, we will use Linux environment variables.
-
-Create the environment variables.
-
-.. code-block:: bash
-
-    $ export AWS_ACCESS_KEY_ID="your-access-key-here"
-    $ export AWS_SECRET_ACCESS_KEY="your-secret-key-here"
-
 
 Create an SSH key-pair
 ----------------------
@@ -75,12 +59,19 @@ All AWS EC2 instances are required to have an SSH key-pair defined when the
 instance is created.  This is done to ensure secure access to the instance will
 be available once it is created.
 
-Create an SSH key-pair with an empty passphrase and save them in the ``~/.ssh``
-directory.
+click on EC2
 
-.. code-block:: bash
+.. figure:: work-in-progress.png
 
-    $ ssh-keygen -t rsa -b 1024 -N '' -f ~/.ssh/lab_ssh_key
+Click Key Pairs
+
+.. figure:: work-in-progress.png
+
+Give it a name:
+
+.. figure:: work-in-progress.png
+
+And click Create . When prompt ed save Key Pair you just created.
 
 
 Create S3 Bucket for bootstrapping
@@ -107,13 +98,16 @@ through the subsequent steps as the default values will be used.
 
 
 
-Bootstrap Bucket have to be created in same region of VPC
+!!!!!!!!!!!!    Bootstrap Bucket have to be created in same region of VPC     !!!!!!!!!!!!!!!!!!
 
 
-Bucket Properties/Permissions???
+Bucket Properties/Permissions??? A Documenter avec IAM account spcifique  droits restreints sur le bucket S3.
 
 You will need to enter a globally unique bucket name. AWS will warn you if the
-name is not unique. Once the bucket is created, click on the newly created bucket
+name is not unique. 
+
+
+Once the bucket is created, click on the newly created bucket
 and add four folders called **config**, **license**, **software** and **content** by clicking on
 Create Folder:
 
@@ -131,7 +125,11 @@ Upload files the various buckets from the following link: https://github.com/Pal
 
 .. figure:: work-in-progress.png
 
-Upload the bootstrap.xml and init-cfg.txt files to the config folder.
+
+Unzip bootstrap.zip.
+
+
+Upload the bootstrap.xml and init-cfg.txt files from bootstrap folder (unziped before) to the config folder.
 
 .. figure:: work-in-progress.png
 
@@ -183,7 +181,7 @@ Change into the AWS deployment directory.
 
 .. code-block:: bash
 
-    $ cd ~/UTD/utd-automation/utd/sample
+    $ cd ~/UTD/utd-automation/utd/sample --------  A REVOIR----------
 
 In this directory you will find the three main files associated with a
 Terraform plan: ``main.tf``, ``variables.tf``, and ``outputs.tf``.  View the
