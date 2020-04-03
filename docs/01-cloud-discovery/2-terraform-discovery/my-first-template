@@ -21,7 +21,7 @@ In this activity you will:
 Open Terminal
 -------------
 
-.. figure:: work-in-progress.png
+.. figure:: img/work-in-progress.png
 
 
 
@@ -61,26 +61,26 @@ be available once it is created.
 
 click on EC2
 
-.. figure:: sshkeypair-1.png
+.. figure:: img/sshkeypair-1.png
 
 Click Key Pairs
 
-.. figure:: sshkeypair-2.png
+.. figure:: img/sshkeypair-2.png
 
 Clic Create key pair button:
 
-.. figure:: sshkeypair-3.png
+.. figure:: img/sshkeypair-3.png
 
 Give it a name:
 
-.. figure:: sshkeypair-4.png
+.. figure:: img/sshkeypair-4.png
 
 And click Create .
 
 
 When prompted save Key Pair you just created in ~/UTD/first-step-terraform folder
 
-.. figure:: sshkeypair-5.png
+.. figure:: img/sshkeypair-5.png
 
 
 Create S3 Bucket for bootstrapping
@@ -93,16 +93,16 @@ need for manual configuration.
 To create a bootstrap bucket, Sign in to the AWS console https://www.amazon.com
 and click on S3
 
-.. figure:: buckets3-1.png
+.. figure:: img/buckets3-1.png
 
 Click Create Bucket:
 
-.. figure:: buckets3-2.png
+.. figure:: img/buckets3-2.png
 
 Enter a bucket name and select a region and click Create as there is no need to go
 through the subsequent steps as the default values will be used.
 
-.. figure:: buckets3-3.png
+.. figure:: img/buckets3-3.png
 
 
 
@@ -126,35 +126,35 @@ We need to give ** relevant rights** for IAM account created to use API (IAM acc
 
 Go to Services -> IAM and click on **Customer Managed Policies** :
 
-.. figure:: buckets3-4.png
+.. figure:: img/buckets3-4.png
 
 Clic **Create policy** :
 
-.. figure:: buckets3-5.png
+.. figure:: img/buckets3-5.png
 
 Click on **Choose a service** and choose **S3**
 
-.. figure:: buckets3-6.png
+.. figure:: img/buckets3-6.png
 
 Choose **Read** for Acess level:
 
-.. figure:: buckets3-7.png
+.. figure:: img/buckets3-7.png
 
 Click on **Ressources** **Specify bucket ressource ARN for the GetBucketLocation...** and clic on **bucket** on **Add ARN to retrict access**:
 
-.. figure:: buckets3-8.png
+.. figure:: img/buckets3-8.png
 
 Add ARN of the Bucket :
 
-.. figure:: buckets3-9.png
+.. figure:: img/buckets3-9.png
 
 Click on *Review Policy**
 
-.. figure:: buckets3-10.png
+.. figure:: img/buckets3-10.png
 
 Click Create policy
 
-.. figure:: buckets3-11.png
+.. figure:: img/buckets3-11.png
 
 
 
@@ -170,15 +170,15 @@ on the newly created bucket
 and add four folders called **config**, **license**, **software** and **content** by clicking on
 Create Folder:
 
-.. figure:: bootstrap-1.png
+.. figure:: img/bootstrap-1.png
 
 Fill in the folder name and click Save. Repeat the process for the three remaining
 folders.
 
 
-.. figure:: bootstrap-2.png
+.. figure:: img/bootstrap-2.png
 
-.. figure:: bootstrap-3.png
+.. figure:: img/bootstrap-3.png
 
 
 
@@ -190,26 +190,26 @@ Upload files in the various buckets folder from ~/UTD/first-step-terraform folde
 
 Upload the bootstrap.xml and init-cfg.txt files from bootstrap folder (~/UTD/first-step-terraform/bootstrap-files/) to the **config** folder by clicking **config**.
 
-.. figure:: bootstrap-4.png
+.. figure:: img/bootstrap-4.png
 
 Select Add Files and select the two files (bootstrap.xml and init-cft.txt) handled previously and click Upload:
 
-.. figure:: bootstrap-5.png
+.. figure:: img/bootstrap-5.png
 
 The two files should be listed under the folder:
 
-.. figure:: bootstrap-6.png
+.. figure:: img/bootstrap-6.png
 
 Upload the **panupv2-all-contents-8225-5857** file to the **content** folder.
 click on the **content** folder ins the S3 console and click Upload. Select **Add Files**
 and select the file (panupv2-all-contents-8225-5857) downloaded previously and click
 **Upload**:
 
-.. figure:: bootstrap-7.png
+.. figure:: img/bootstrap-7.png
 
 Once complet ed the file is listed under the folder content :
 
-.. figure:: bootstrap-8.png
+.. figure:: img/bootstrap-8.png
 
 
 
@@ -436,7 +436,7 @@ It is recommended that you skip ahead and read the :doc:`../03-run/terraform/bac
 Verify on AWS Console some elements created by terraform
 --------------------------------------------------------
 
-.. figure:: work-in-progress.png
+.. figure:: img/work-in-progress.png
 
 
 
