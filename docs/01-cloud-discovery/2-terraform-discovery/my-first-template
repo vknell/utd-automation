@@ -403,29 +403,22 @@ At a high level these are each of the steps this plan will perform:
 
 
 ---------- A MODIFIER--------------------------------
-#. Run the ``bootstrap`` module
-    #. Create an S3 bucket for the firewall bootstrap package
-    #. Assign an IAM policy to the bucket allowing read access from the
-       firewall instance
-    #. Create the ``/config/init-cfg.txt``, ``/config/bootstrap.xml``,
-       ``/software``, ``/content``, and ``/license`` objects in the bootstrap
-       bucket
-#. Run the ``vpc`` module
+
     #. Create the VPC
     #. Create the Internet gateway
     #. Create the ``management``, ``untrust``, ``web``, and ``database``
        subnets
     #. Create the security groups for each subnet
     #. Create the default route for the ``web`` and ``database`` subnets
-#. Run the ``firewall`` module
+#.
     #. Create the VM-Series firewall instance
     #. Create the VM-Series firewall interfaces
     #. Create the Elastic IPs for the ``management`` and ``untrust`` interfaces
     #. Create an IAM instance profile for accessing the bootstrap bucket
-#. Run the ``web`` module
+#. 
     #. Create the web server instance
     #. Create the web server interface
-#. Run the ``database`` module
+#. 
     #. Create the database server instance
     #. Create the database server interface
 ---------- A MODIFIER--------------------------------
