@@ -51,8 +51,8 @@ Learning Outcomes
     :hidden:
     :caption: cloud discovery
 
-    01-cloud-discovery/1-aws-discovery
-    01-cloud-discovery/2-terraform-discovery
+    01-cloud-discovery/1-aws-discovery/aws-disc
+    01-cloud-discovery/2-terraform-discovery/terraform-disc
 
 .. toctree::
     :maxdepth: 2
