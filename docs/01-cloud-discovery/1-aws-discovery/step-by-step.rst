@@ -9,7 +9,7 @@ Architecture de l’infrastructure à déployer sur AWS :
 
 
 Login on Linux dedicated hosted VM
------------------------------
+----------------------------------
 Instructor has to give you an URL to connect on predeployed VM prepared by hiself (POD Machine).
 
 
@@ -65,15 +65,16 @@ Le bloc de réseaux IPv4 créé avec le VPC sera maintenant segmenté en plusieu
 Les sous réseaux seront utilisés comme suit :
 
 .. figure:: img/create-vpc-6.png
-+--------------+--------------+-------------+
-| Subnet       | Address      | Interface   |
-+==============+==============+=============+
-| Management   | 10.2.0.0/24  | management  |
-+--------------+--------------+-------------+
-| Internet     | 10.2.1.0/24  | internet    |
-+--------------+--------------+-------------+
-| Web Server   | 10.2.2.0/24  | web         |
-+--------------+--------------+-------------+
+
++--------------+--------------+-------------+--------------------+
+| Subnet       | Address      | Interface   | Availability Zone  |
++==============+==============+=============+====================+
+| Management   | 10.2.0.0/24  | management  | eu-west-3          |
++--------------+--------------+-------------+--------------------+
+| Internet     | 10.2.1.0/24  | internet    | eu-west-3          |
++--------------+--------------+-------------+--------------------+
+| Web Server   | 10.2.2.0/24  | web         | eu-west-3          |
++--------------+--------------+-------------+--------------------+
 
 
 Etape 1: allez dans VPC > Subnets > Create subnet

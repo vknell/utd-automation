@@ -32,7 +32,7 @@ On your POD Machine, create a directory work space with Terminal :
 
 .. code-block:: bash
 
-     $ mkdir ~/UTD
+    $ mkdir ~/UTD
     $ mkdir ~/UTD/first-step-terraform
 
 
