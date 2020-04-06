@@ -1,7 +1,6 @@
 =================================
-Activity 1-2: Terraform Discovery
+Activity 1.2: Terraform Discovery
 =================================
-
 
 In this activity you will:
 
@@ -13,57 +12,26 @@ In this activity you will:
 - Deploy the lab infrastucture plan
 - Confirm firewall bootstrap completion
 
-
-
-
-
-
-
-
 Test:
 
-
 .. figure:: img/work-in-progress.png
-
-
-
 
 
 Open Terminal :
 ---------------
 
-
 .. figure:: img/work-in-progress.png
-
-
 
 
 Create terraform Environment :
 ------------------------------
-On your POD Machine, create a directory work space with Terminal :
+
+You will need to download the sample repository used in this lab.  This repository (or *repo*) contains
+the files needed to deploy the network and compute infrastructure we'll be working with.
 
 .. code-block:: bash
 
-<<<<<<< HEAD
-    $ mkdir ~/UTD
-    $ mkdir ~/UTD/first-step-terraform
-=======
-$ mkdir ~/UTD
-$ mkdir ~/UTD/first-step-terraform
->>>>>>> origin/master
-
-
-
-Clone the lab software repository
----------------------------------
-you will need to clone the GitHub repository used in this lab.  This repository (or *repo*) contains
-the files needed to deploy the network and compute infrastructure we'll be working with.
-
-    .. code-block:: bash
-
-    $ cd ~/UTD/first-step-terraform/
-    $ git clone https://github.com/PaloAltoNetworks/terraform-templates/tree/master/sample ~/utd
-
+    $  curl  https://github.com/PaloAltoNetworks/terraform-templates/tree/master/sample ~/palo/terraform-templates
 
 
 
@@ -132,7 +100,7 @@ You will need to enter a globally unique bucket name. AWS will warn you if the
 name is not unique. 
 
 
-Once the bucket is created, Click on **copy ARN** button and copy/paste the value in file named **ARNBucket** in ~/UTD/first-step-terraform folder.
+Once the bucket is created, Click on **copy ARN** button and copy/paste the value in file named **ARNBucket** in ~/utd/first-step-terraform folder.
 This information will used later in Terraform script for bootstrap of VM FW.
 
 

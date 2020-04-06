@@ -1,5 +1,5 @@
 =======================================
-Activity 1-1: AWS Deploy your first VPC
+Activity 1.1: AWS Deploy your first VPC
 =======================================
 
 Architecture de l’infrastructure à déployer sur AWS :
@@ -546,6 +546,8 @@ Etape 4 : Dans Networks interfaces, ajoutez l’adresse IP 10.2.5.11 comme adres
 .. figure:: img/create-vpc-67.png
 
 Etape 5 : Dans cette étape, vous allez utiliser la fonctionnalité User Data d’AWS pour pousser un script d’automatisation du déploiement et de la configuration d’un serveur Web Apache sur votre Instance Linux. Il faut ainsi aller dans Advanced Details, sélectionner l’option As text et coller le script ci-dessous. Ensuite, cliquez sur Next: Add Storage
+
+.. code-block:: bash
 
 #!/bin/bash
 yum install httpd -y
