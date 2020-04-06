@@ -2,26 +2,38 @@
 Activity 1-2: Terraform Discovery
 =================================
 
-------------------A REVOIR---------
+
 In this activity you will:
 
-- Clone lab's github repository
+
 - Create AWS environment variables
 - Create an SSH key-pair
 - Create the Terraform variables
 - Initialize the AWS Terraform provider
 - Deploy the lab infrastucture plan
 - Confirm firewall bootstrap completion
-------------------A REVOIR---------
 
 
 
 
 
-Open Terminal
--------------
 
-.. figure:: work-in-progress.png
+
+
+Test:
+
+
+.. figure:: img/work-in-progress.png
+
+
+
+
+
+Open Terminal :
+---------------
+
+
+.. figure:: img/work-in-progress.png
 
 
 
@@ -32,8 +44,13 @@ On your POD Machine, create a directory work space with Terminal :
 
 .. code-block:: bash
 
+<<<<<<< HEAD
     $ mkdir ~/UTD
     $ mkdir ~/UTD/first-step-terraform
+=======
+$ mkdir ~/UTD
+$ mkdir ~/UTD/first-step-terraform
+>>>>>>> origin/master
 
 
 
@@ -42,32 +59,16 @@ Clone the lab software repository
 you will need to clone the GitHub repository used in this lab.  This repository (or *repo*) contains
 the files needed to deploy the network and compute infrastructure we'll be working with.
 
-.. code-block:: bash
+    .. code-block:: bash
 
     $ cd ~/UTD/first-step-terraform/
-    $ git clone https://github.com/PaloAltoNetworks/terraform-templates/tree/master/sample
+    $ git clone https://github.com/PaloAltoNetworks/terraform-templates/tree/master/sample ~/utd
 
 
 
 
 Create AWS environment variables
 --------------------------------
-We will be deploying the lab infrastucture in AWS using Terraform.  A
-predefined Terraform plan is provided that will initialize the AWS provider and
-call modules responsible for instantiating the network, compute, and storage
-resources needed.
-
-In order for Terraform to do this it will need to authenticate to AWS using the
-AWS Access Key and Secret Key values of your IAM account for API access ( see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_. ).
-Rather than write these as Terraform variables, we will use Linux environment variables.
-
-Create the environment variables.
-
-.. code-block:: bash
-
-    $ export AWS_ACCESS_KEY_ID="your-access-key-here"
-    $ export AWS_SECRET_ACCESS_KEY="your-secret-key-here"
-
 
 Create an SSH key-pair
 ----------------------
@@ -75,12 +76,28 @@ All AWS EC2 instances are required to have an SSH key-pair defined when the
 instance is created.  This is done to ensure secure access to the instance will
 be available once it is created.
 
-Create an SSH key-pair with an empty passphrase and save them in the ``~/.ssh``
-directory.
+click on EC2:
 
-.. code-block:: bash
+.. figure:: img/sshkeypair-1.png
 
-    $ ssh-keygen -t rsa -b 1024 -N '' -f ~/.ssh/lab_ssh_key
+Click Key Pairs
+
+.. figure:: img/sshkeypair-2.png
+
+Clic Create key pair button:
+
+.. figure:: img/sshkeypair-3.png
+
+Give it a name:
+
+.. figure:: img/sshkeypair-4.png
+
+And click Create .
+
+
+When prompted save Key Pair you just created in ~/UTD/first-step-terraform folder
+
+.. figure:: img/sshkeypair-5.png
 
 
 Create S3 Bucket for bootstrapping
@@ -93,67 +110,123 @@ need for manual configuration.
 To create a bootstrap bucket, Sign in to the AWS console https://www.amazon.com
 and click on S3
 
-.. figure:: work-in-progress.png
+.. figure:: img/buckets3-1.png
 
 Click Create Bucket:
 
-.. figure:: work-in-progress.png
+.. figure:: img/buckets3-2.png
 
 Enter a bucket name and select a region and click Create as there is no need to go
 through the subsequent steps as the default values will be used.
 
-.. figure:: work-in-progress.png
+.. figure:: img/buckets3-3.png
 
 
 
 
-Bootstrap Bucket have to be created in same region of VPC
+!!!!!!!!!!!!    Bootstrap Bucket have to be created in same region of VPC     !!!!!!!!!!!!!!!!!!
 
 
-Bucket Properties/Permissions???
 
 You will need to enter a globally unique bucket name. AWS will warn you if the
-name is not unique. Once the bucket is created, click on the newly created bucket
+name is not unique. 
+
+
+Once the bucket is created, Click on **copy ARN** button and copy/paste the value in file named **ARNBucket** in ~/UTD/first-step-terraform folder.
+This information will used later in Terraform script for bootstrap of VM FW.
+
+
+Add restricted permission on S3 Bucket (Read only):
+---------------------------------------------------
+
+We need to give ** relevant rights** for IAM account created to use API (IAM account for API access).
+
+Go to Services -> IAM and click on **Customer Managed Policies** :
+
+.. figure:: img/buckets3-4.png
+
+Clic **Create policy** :
+
+.. figure:: img/buckets3-5.png
+
+Click on **Choose a service** and choose **S3**
+
+.. figure:: img/buckets3-6.png
+
+Choose **Read** for Acess level:
+
+.. figure:: img/buckets3-7.png
+
+Click on **Ressources** **Specify bucket ressource ARN for the GetBucketLocation...** and clic on **bucket** on **Add ARN to retrict access**:
+
+.. figure:: img/buckets3-8.png
+
+Add ARN of the Bucket :
+
+.. figure:: img/buckets3-9.png
+
+Click on *Review Policy**
+
+.. figure:: img/buckets3-10.png
+
+Click Create policy
+
+.. figure:: img/buckets3-11.png
+
+
+
+
+
+Build Bootstrping in S3 Bucket :
+--------------------------------
+
+
+click on the newly created bucket and modify 
+
+on the newly created bucket
 and add four folders called **config**, **license**, **software** and **content** by clicking on
 Create Folder:
 
-.. figure:: work-in-progress.png
+.. figure:: img/bootstrap-1.png
 
 Fill in the folder name and click Save. Repeat the process for the three remaining
 folders.
 
 
-.. figure:: work-in-progress.png
+.. figure:: img/bootstrap-2.png
 
-Now let ’s proceed to download the boot strap files from Git Hub.
-Upload files the various buckets from the following link: https://github.com/PaloAltoNetworks/aws/tree/master/two-tier-sample/bootstrap
+.. figure:: img/bootstrap-3.png
 
 
-.. figure:: work-in-progress.png
 
-Upload the bootstrap.xml and init-cfg.txt files to the config folder.
 
-.. figure:: work-in-progress.png
+Upload files in the various buckets folder from ~/UTD/first-step-terraform folde
 
-Select Add Files and select the two files (bootstrap.xml and init-cft.txt) downloaded
-previously and click Upload:
 
-.. figure:: work-in-progress.png
+
+
+Upload the bootstrap.xml and init-cfg.txt files from bootstrap folder (~/UTD/first-step-terraform/bootstrap-files/) to the **config** folder by clicking **config**.
+
+.. figure:: img/bootstrap-4.png
+
+Select Add Files and select the two files (bootstrap.xml and init-cft.txt) handled previously and click Upload:
+
+.. figure:: img/bootstrap-5.png
 
 The two files should be listed under the folder:
 
-.. figure:: work-in-progress.png
+.. figure:: img/bootstrap-6.png
 
 Upload the **panupv2-all-contents-8225-5857** file to the **content** folder.
 click on the **content** folder ins the S3 console and click Upload. Select **Add Files**
 and select the file (panupv2-all-contents-8225-5857) downloaded previously and click
 **Upload**:
 
-.. figure:: work-in-progress.png
+.. figure:: img/bootstrap-7.png
 
 Once complet ed the file is listed under the folder content :
 
-.. figure:: work-in-progress.png
+.. figure:: img/bootstrap-8.png
 
 
 
@@ -163,7 +236,6 @@ click on the **software** folder ins the S3 console and click Upload. Select Add
 and select the file (example : PanOS_vm_9.0.1 ) retrieved from PANW support site, and click
 **Upload**:
 
-.. figure:: work-in-progress.png
 
 
 
@@ -173,7 +245,6 @@ click on the **license** folder ins the S3 console and click Upload. Select Add 
 and select the file (example : 0001A100110-threats.key) downloaded previously and click
 Upload:
 
-.. figure:: work-in-progress.png
 
 
 
@@ -183,7 +254,7 @@ Change into the AWS deployment directory.
 
 .. code-block:: bash
 
-    $ cd ~/UTD/utd-automation/utd/sample
+    $ cd ~/UTD/utd-automation/utd/sample --------  A REVOIR----------
 
 In this directory you will find the three main files associated with a
 Terraform plan: ``main.tf``, ``variables.tf``, and ``outputs.tf``.  View the
@@ -211,7 +282,7 @@ variables.tf - Variables you can set for the deployment
 Modify/Adapt Configuration
 --------------------------
 
-you need to modify the variables.tf file with a Terminal or text editor.
+1. You need to modify the variables.tf file with a Terminal or text editor.
 
 
 To set the AWS access key and secret key of your IAM account for API access ( see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_. ):
@@ -230,28 +301,28 @@ Modify Region and AZ if needed:(The template is also setup to deploy in US East 
 
 # AWS Region and Availablility Zone
 variable "region" {
-default = "us-east-1"
+default = "us-west-2"
 }
 variable "availability_zone" {
-default = "us-east-1e"
+default = "us-west-2a"
 }
 
 
 
-Modify variables.tf with a Terminal or text editor with right information regarding SSH keypair:
+2. Modify variables.tf file with a Terminal or text editor with right information regarding SSH keypair:
 
 variable "pavm_key_name" {
 description = "Name of the SSH keypair to use in AWS."
-default = "panw-mlue"
+default = "ec2sshkeypair.pem"
 }
 variable "pavm_key_path" {
 description = "Path to the private portion of the SSH key specified."
-default = "keys/panw-mlue.pem"
+default = "~/UTD/first-step-terraform/ec2sshkeypair.pem"
 }
 
 
 
-you need to modify the deploy_panw.tf file with a Terminal or text editor.
+3. You need to modify the deploy_panw.tf file with a Terminal or text editor.
 
 In deploy_panw.tf you can adapt the AMI information regarding your licensing
 type (BYOL or Bundle2):
@@ -278,14 +349,15 @@ Name = "PAVM"
 }
 
 
-you need to modify the deploy_vpc.tf file with a Terminal or text editor.
+4. You need to modify the deploy_vpc.tf file with a Terminal or text editor.
 
 In deploy_vpc.tf you have to uncomment code to use Bootstrap S3 Bucket and give the S3 name bucket:
+
 # Create an endpoint for S3 bucket
 /* Uncomment to enable */
 resource "aws_vpc_endpoint" "private-s3" {
 vpc_id = "${aws_vpc.pavm-vpc.id}"
-service_name = "com.amazonaws.us-east-1.s3"
+service_name = "com.amazonaws.us-west-2.s3"
 /* Uncomment to enable policy
 policy = <<POLICY
 {
@@ -293,12 +365,18 @@ policy = <<POLICY
 "Effect": "Deny",
 "Principal": "*",
 "Action": "s3:*",
-"Resource": "arn:aws:s3:::ha1-dev-paloalto/*"
+"Resource": "arn:aws:s3:::mys3bucketutd"
 }
 ]
 }
 POLICY
 */
+
+Nota : 
+- Value for ARN (**arn:aws:s3:::mys3bucketutd**) was been copied in in file named **ARNBucket** in ~/UTD/first-step-terraform folder at the begining of activity (see ici)
+
+
+
 
 
 
@@ -334,40 +412,25 @@ perform the deployment.
 
     $ terraform apply -auto-approve
 
+
+
+
+
+
+
 At a high level these are each of the steps this plan will perform:
 
-
-
-
-
-
----------- A MODIFIER--------------------------------
-#. Run the ``bootstrap`` module
-    #. Create an S3 bucket for the firewall bootstrap package
-    #. Assign an IAM policy to the bucket allowing read access from the
-       firewall instance
-    #. Create the ``/config/init-cfg.txt``, ``/config/bootstrap.xml``,
-       ``/software``, ``/content``, and ``/license`` objects in the bootstrap
-       bucket
-#. Run the ``vpc`` module
     #. Create the VPC
     #. Create the Internet gateway
-    #. Create the ``management``, ``untrust``, ``web``, and ``database``
-       subnets
+    #. Create VPC NAT Gateway
+    #. Create the subnets
     #. Create the security groups for each subnet
-    #. Create the default route for the ``web`` and ``database`` subnets
-#. Run the ``firewall`` module
+    #. Create routing tables and routes
     #. Create the VM-Series firewall instance
     #. Create the VM-Series firewall interfaces
     #. Create the Elastic IPs for the ``management`` and ``untrust`` interfaces
-    #. Create an IAM instance profile for accessing the bootstrap bucket
-#. Run the ``web`` module
-    #. Create the web server instance
-    #. Create the web server interface
-#. Run the ``database`` module
-    #. Create the database server instance
-    #. Create the database server interface
----------- A MODIFIER--------------------------------
+
+
 
 
 
@@ -382,7 +445,7 @@ It is recommended that you skip ahead and read the :doc:`../03-run/terraform/bac
 Verify on AWS Console some elements created by terraform
 --------------------------------------------------------
 
-.. figure:: work-in-progress.png
+.. figure:: img/work-in-progress.png
 
 
 
@@ -391,7 +454,7 @@ Confirm firewall bootstrap completion
 SSH into the firewall with the following credentials.
 
 - **Username:** ``admin``
-- **Password:** ``Ignite2019!``
+- **Password:** ``admin``
 
 .. code-block:: bash
 
@@ -434,3 +497,19 @@ To clean up the deployment, just run the following command
 $ terraform destroy
 
 it will automatically delete every object that was created by the template.
+
+
+
+What were bad things on this Activity:
+--------------------------------------
+
+- AWS Access key and AWS Secret key are visible and stored in vraiable.tf file.
+- It needs to prepare a S3 bucket from AWS Console before use this scripts Terraform. 
+- Methode for Bootstraping expose password administrator of the FW in S3 bucket with potentiel high risk.
+- Structure of scripts is not relevant for large deployment architecture. 
+
+
+
+Conclusion:
+-----------
+We can do better then let's go to next activity : **Build Multicloud**

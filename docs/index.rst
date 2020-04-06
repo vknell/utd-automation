@@ -51,7 +51,8 @@ Learning Outcomes
     :hidden:
     :caption: cloud discovery
 
-    01-cloud-discovery/aws/step-by-step
+    01-cloud-discovery/1-aws-discovery
+    01-cloud-discovery/2-terraform-discovery
 
 .. toctree::
     :maxdepth: 2

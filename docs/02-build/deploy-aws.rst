@@ -32,6 +32,9 @@ AWS Access Key and Secret Key values that were presented in the Qwiklabs panel
 when the lab was started.  Rather than write these as Terraform variables, we
 will use Linux environment variables.
 
+You have to use your AWS Access key ID and AWS Secret Key from IAM account for API access ( see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_. ):
+
+
 Create the environment variables.
 
 .. code-block:: bash
@@ -60,7 +63,7 @@ Change into the AWS deployment directory.
 
 .. code-block:: bash
 
-    $ cd ~/UTD/utd-automation/utd/basic/deployment/aws
+    $ cd ~/utd/utd-automation/utd/basic/deployment/aws   ----------A REVOIR-------------
 
 In this directory you will find the three main files associated with a
 Terraform plan: ``main.tf``, ``variables.tf``, and ``outputs.tf``.  View the
