@@ -63,7 +63,7 @@ Give it a name:
 And click Create .
 
 
-When prompted save Key Pair you just created in ~/UTD/first-step-terraform folder
+When prompted save Key Pair you just created in ~/utd/first-step-terraform folder
 
 .. figure:: img/sshkeypair-5.png
 
@@ -168,12 +168,12 @@ folders.
 
 
 
-Upload files in the various buckets folder from ~/UTD/first-step-terraform folde
+Upload files in the various buckets folder from ~/utd/first-step-terraform folde
 
 
 
 
-Upload the bootstrap.xml and init-cfg.txt files from bootstrap folder (~/UTD/first-step-terraform/bootstrap-files/) to the **config** folder by clicking **config**.
+Upload the bootstrap.xml and init-cfg.txt files from bootstrap folder (~/utd/first-step-terraform/bootstrap-files/) to the **config** folder by clicking **config**.
 
 .. figure:: img/bootstrap-4.png
 
@@ -222,7 +222,7 @@ Change into the AWS deployment directory.
 
 .. code-block:: bash
 
-    $ cd ~/UTD/utd-automation/utd/sample --------  A REVOIR----------
+    $ cd ~/utd/utd-automation/utd/sample --------  A REVOIR----------
 
 In this directory you will find the three main files associated with a
 Terraform plan: ``main.tf``, ``variables.tf``, and ``outputs.tf``.  View the
@@ -285,7 +285,7 @@ default = "ec2sshkeypair.pem"
 }
 variable "pavm_key_path" {
 description = "Path to the private portion of the SSH key specified."
-default = "~/UTD/first-step-terraform/ec2sshkeypair.pem"
+default = "~/utd/first-step-terraform/ec2sshkeypair.pem"
 }
 
 
@@ -341,7 +341,7 @@ POLICY
 */
 
 Nota : 
-- Value for ARN (**arn:aws:s3:::mys3bucketutd**) was been copied in in file named **ARNBucket** in ~/UTD/first-step-terraform folder at the begining of activity (see ici)
+- Value for ARN (**arn:aws:s3:::mys3bucketutd**) was been copied in in file named **ARNBucket** in ~/utd/first-step-terraform folder at the begining of activity (see ici)
 
 
 
