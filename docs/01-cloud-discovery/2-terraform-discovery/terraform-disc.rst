@@ -31,14 +31,15 @@ the files needed to deploy the network and compute infrastructure we'll be worki
 
 .. code-block:: bash
     
-    mkdir /utd/terraform-templates
-    wget  https://github.com/PaloAltoNetworks/terraform-templates/blob/master/sample/deploy_pavm.tf ~/utd/terraform-templates
-    wget  https://github.com/PaloAltoNetworks/terraform-templates/blob/master/sample/deploy_vpc.tf ~/utd/terraform-templates
-    wget  https://github.com/PaloAltoNetworks/terraform-templates/blob/master/sample/variables.tf ~/utd/terraform-templates
+    wget  -P ~/utd/utd-automation/first-step-terraform https://raw.githubusercontent.com/PaloAltoNetworks/terraform-templates/master/sample/deploy_pavm.tf
+    wget  -P ~/utd/utd-automation/first-step-terraform https://raw.githubusercontent.com/PaloAltoNetworks/terraform-templates/master/sample/deploy_vpc.tf
+    wget  -P ~/utd/utd-automation/first-step-terraform https://raw.githubusercontent.com/PaloAltoNetworks/terraform-templates/master/sample/variables.tf
 
 
 Create AWS environment variables
 --------------------------------
+
+Select the Paris region (eu-west-3) at the top right corner of the screen
 
 Create an SSH key-pair
 ----------------------
@@ -58,17 +59,19 @@ Clic Create key pair button:
 
 .. figure:: img/sshkeypair-3.png
 
-Give it a name:
+Give it a name: ec2sshkeypair
 
 .. figure:: img/sshkeypair-4.png
 
 And click Create .
 
-
-When prompted save Key Pair you just created in ~/utd/first-step-terraform folder
-
 .. figure:: img/sshkeypair-5.png
 
+Change the key to the following folder
+
+.. code-block:: bash
+
+  mv ~/Downloads/ec2sshkeypair.pem ~/utd/utd-automation/first-step-terraform/
 
 Create S3 Bucket for bootstrapping
 ----------------------------------
@@ -102,7 +105,13 @@ You will need to enter a globally unique bucket name. AWS will warn you if the
 name is not unique. 
 
 
-Once the bucket is created, Click on **copy ARN** button and copy/paste the value in file named **ARNBucket** in ~/utd/first-step-terraform folder.
+Once the bucket is created, select your bucket and click on **copy ARN** button and copy/paste the value in file named **ARNBucket**
+In your terminal type **export ARN=** and paste the key that is in your clipboard then enter the following command:
+
+..  code-block:: bash
+  echo $ARN > ~/utd/utd-automation/first-step-terraform/arn.txt
+
+
 This information will used later in Terraform script for bootstrap of VM FW.
 
 

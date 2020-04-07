@@ -1,5 +1,4 @@
 provider "aws" {
-  version = "-> 2.0"
   region = "${var.aws_region}"
 }
 
@@ -43,7 +42,8 @@ resource "aws_security_group" "sg_utd" {
 
 resource "aws_instance" "ec2-utd" {
   ami = "ami-096b8af6e7e8fb927"
-  instance_type = "${var.instance_count}"
+  instance_type = "${var.instance_type}"
+  instance_count = "${var.instance_count}"
 
   user_data = "${file("ubuntu.cfg")}"
   tags = {

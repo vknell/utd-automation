@@ -4,7 +4,9 @@ variable "instance_count" {
 }
 
 variable "instance_type" {
-  description = "describe your variable"
+  description = "Server size on AWS, lower is cheaper"
+  # default = "t2.micro"
+  # default = "t2.small"
   default = "t2.medium"
 }
 
@@ -12,6 +14,16 @@ variable "aws_region" {
   description = "describe your variable"
   default = "default_value"
 }
+
+variable "aws_az" {
+  description = "describe your variable"
+  default = "default_value"
+}
+
+variable "name" {
+  type = "string"
+  description = "describe your variable"
+  default = "default_value"
 
 variable "name" {
   type = "string"
