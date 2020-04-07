@@ -71,7 +71,7 @@ Change the key to the following folder
 
 .. code-block:: bash
 
-  mv ~/Downloads/ec2sshkeypair.pem ~/utd/utd-automation/first-step-terraform/
+    mv ~/Downloads/ec2sshkeypair.pem ~/utd/utd-automation/first-step-terraform/
 
 Create S3 Bucket for bootstrapping
 ----------------------------------
@@ -109,8 +109,8 @@ Once the bucket is created, select your bucket and click on **copy ARN** button 
 In your terminal type **export ARN=** and paste the key that is in your clipboard then enter the following command:
 
 ..  code-block:: bash
-  echo $ARN > ~/utd/utd-automation/first-step-terraform/arn.txt
 
+    sed -i 's/arn:aws:s3:::ha1-dev-paloalto/'"$ARN"'/g' ~/utd/utd-automation/first-step-terraform/deploy_vpc.tf
 
 This information will used later in Terraform script for bootstrap of VM FW.
 
