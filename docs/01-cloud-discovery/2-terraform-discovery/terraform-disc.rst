@@ -30,9 +30,11 @@ You will need to download the sample repository used in this lab.  This reposito
 the files needed to deploy the network and compute infrastructure we'll be working with.
 
 .. code-block:: bash
-
-    $  curl  https://github.com/PaloAltoNetworks/terraform-templates/tree/master/sample ~/palo/terraform-templates
-
+    
+    mkdir /utd/terraform-templates
+    wget  https://github.com/PaloAltoNetworks/terraform-templates/blob/master/sample/deploy_pavm.tf ~/utd/terraform-templates
+    wget  https://github.com/PaloAltoNetworks/terraform-templates/blob/master/sample/deploy_vpc.tf ~/utd/terraform-templates
+    wget  https://github.com/PaloAltoNetworks/terraform-templates/blob/master/sample/variables.tf ~/utd/terraform-templates
 
 
 Create AWS environment variables
