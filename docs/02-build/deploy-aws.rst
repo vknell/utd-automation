@@ -35,12 +35,26 @@ will use Linux environment variables.
 You have to use your AWS Access key ID and AWS Secret Key from IAM account for API access ( see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_. ):
 
 
-Create the environment variables.
+Warning: Hard-coding credentials into any Terraform configuration is not recommended, and risks secret leakage should this file ever be committed to a public version control system.
+
+Static credentials can be provided by adding an access_key and secret_key in-line in the AWS provider block:
 
 .. code-block:: bash
 
-    $ export AWS_ACCESS_KEY_ID="your-access-key-here"
-    $ export AWS_SECRET_ACCESS_KEY="your-secret-key-here"
+    provider "aws" {
+      region     = "us-west-2"
+      access_key = "my-access-key"
+      secret_key = "my-secret-key"
+    }
+
+Create the environment variables.
+
+You can provide your credentials via the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY, environment variables, representing your AWS Access Key and AWS Secret Key, respectively. Note that setting your AWS credentials using either these (or legacy) environment variables will override the use of AWS_SHARED_CREDENTIALS_FILE and AWS_PROFILE. The AWS_DEFAULT_REGION and AWS_SESSION_TOKEN environment variables are also used, if applicable:
+
+.. code-block:: bash
+
+    $ export AWS_ACCESS_KEY_ID=your-access-key-here
+    $ export AWS_SECRET_ACCESS_KEY=your-secret-key-here
 
 
 Create an SSH key-pair

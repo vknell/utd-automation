@@ -2,11 +2,13 @@ provider "aws" { # Définition du provider
   region  = "${var.aws_region}" # Variable Région AWS
   version = "2.7"
 }
+
 module "bootstrap_bucket" { #Bootstrap configuration
   source = "./modules/bootstrap" 
   bootstrap_xml_path      = "./common/bootstrap/config/bootstrap.xml"
   bootstrap_init_cfg_path = "./common/bootstrap/config/init-cfg.txt"
 }
+
 module "vpc_transit" { #module VPC
   source = "./modules/vpc" #Module Path
   name = "Transit"
@@ -33,21 +35,22 @@ module "vpc_client" { #module VPC
   name = "client"
   cidr = "10.4.0.0/16" #Subnet du VPC
   az1   = "${var.aws_az_name1}" # Avaibility Zone def
-  az2   ="${var.aws_az_name2}"
+  az2   = "${var.aws_az_name2}"
   # Subnets du sql
   sql_sub1 = "10.4.1.0/24"
   sql_sub2= "10.4.45.0/24"
   # Subnets web
   web_sub1 = "10.4.2.0/24"
-  web_sub2="10.4.46.0/24"
+  web_sub2= "10.4.46.0/24"
 
-  ip_fw1 ="${module.firewall.fw_eth2_eip}"
-  ip_fw2="${module.firewall2.fw2_eth2_eip}"
+  ip_fw1 = "${module.firewall.fw_eth2_eip}"
+  ip_fw2= "${module.firewall2.fw2_eth2_eip}"
 
   tags = {
     Environment = "web"
   }
 }
+
 module "firewall" { # Déclaration du module 1er firewall
   source = "./modules/firewall"
   name = "Firewall-1"
@@ -70,7 +73,6 @@ module "firewall" { # Déclaration du module 1er firewall
   tags = {
     Environment = "NGFW"
   }
-
 }
 
 module "firewall2" { # Déclaration du module 2nd firewall
@@ -101,9 +103,10 @@ module "firewall2" { # Déclaration du module 2nd firewall
 }
 
 module "loadbalancer" {
-  source ="/modules/loadbalancer"
+  source = "/modules/loadbalancer"
   name = "lb1"
 }
+
 resource "aws_security_group" "public_sg" { # Règle de sécurité pour accès au réseau
   name        = "Public Security Group"
   description = "Wide open security group"
@@ -206,15 +209,15 @@ module "sql" { #Déclaration du module du service sql
 }
 
 module "vpn" {
-  source ="./modules/vpn"
-  name  ="vpn-transit"
+  source = "./modules/vpn"
+  name  = "vpn-transit"
 
-  ssh_key_name ="${aws_key_pair.ssh_key.key_name}"
+  ssh_key_name = "${aws_key_pair.ssh_key.key_name}"
 
-  vpc_client_id="${module.vpc_client.vpc_client_id}"
-  public_ip_fw1="${module.firewall.fw_eth2_eip}"
-  public_ip_fw2="${module.firewall2.fw2_eth2_eip}"
-  route_table_id="${module.vpc_client.route_table_id}"
+  vpc_client_id= "${module.vpc_client.vpc_client_id}"
+  public_ip_fw1= "${module.firewall.fw_eth2_eip}"
+  public_ip_fw2= "${module.firewall2.fw2_eth2_eip}"
+  route_table_id= "${module.vpc_client.route_table_id}"
 
   tags = {
     Environment = "VPN Transit"
