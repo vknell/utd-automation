@@ -12,9 +12,6 @@ In this activity you will:
 - Deploy the lab infrastucture plan
 - Confirm firewall bootstrap completion
 
-Test:
-
-.. figure:: img/work-in-progress.png
 
 
 Open Terminal :
@@ -236,7 +233,7 @@ Change into the AWS deployment directory.
     $ cd ~/utd/utd-automation/utd/sample --------  A REVOIR----------
 
 In this directory you will find the three main files associated with a
-Terraform plan: ``main.tf``, ``variables.tf``, and ``outputs.tf``.  View the
+Terraform plan: ``deploy_panvm.tf``, ``variables.tf``, and ``deploy_vpc.tf``.  View the
 contents of these files to see what they contain and how they're structured.
 
 .. code-block:: bash
@@ -414,8 +411,9 @@ For both AWS, the licensing options are bring your own license (BYOL) and pay as
 
     - BYOL: Any one of the VM-Series models, along with the associated Subscriptions and Support, are purchased via normal Palo Alto Networks channels and then deployed through your AWS or Azure management console.
     - PAYG: Purchase the VM-Series and select Subscriptions and Premium Support as an hourly subscription bundle from the AWS Marketplace.
-        Bundle 1 contents: VM-300 firewall license, Threat Prevention Subscription (inclusive of IPS, AV, Malware prevention) and Premium Support.  
-        Bundle 2 contents: VM-300 firewall license, Threat Prevention (inclusive of IPS, AV, Malware prevention), WildFire™ threat intelligence service, URL Filtering, GlobalProtect Subscriptions and Premium Support.
+        - Bundle 1 contents: VM-300 firewall license, Threat Prevention Subscription (inclusive of IPS, AV, Malware prevention) and Premium Support.  
+        - Bundle 2 contents: VM-300 firewall license, Threat Prevention (inclusive of IPS, AV, Malware prevention), WildFire™ threat intelligence service, 
+          URL Filtering, GlobalProtect Subscriptions and Premium Support.
 
 
 In deploy_panw.tf you can adapt the AMI information regarding your licensing

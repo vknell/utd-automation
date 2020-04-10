@@ -578,8 +578,10 @@ Vous arrivez à l’étape finale du présent Lab. Vous pouvez ainsi tester la c
 .. figure:: img/create-vpc-71.png
 
 
+(Optional) Create AWS Cloud Formation Template (CFT)
+----------------------------------------------------
 
-
+https://docs.aws.amazon.com/cloudformation/index.html
 
 
 Suppression du VPC
