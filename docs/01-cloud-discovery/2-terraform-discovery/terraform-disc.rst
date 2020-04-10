@@ -278,7 +278,7 @@ To set the AWS access key and secret key of your IAM account for API access ( se
     default = " XXXX "
     }
 
-2  Modify variables.tf file with a Terminal or text editor with right information regarding Region and AZ if needed:(The template is also setup to deploy in US East Region)
+2.  Modify variables.tf file with a Terminal or text editor with right information regarding Region and AZ if needed:(The template is also setup to deploy in US East Region)
 
 .. code-block:: bash
 
@@ -352,14 +352,12 @@ To find a Palo Alto Networks AMI using the Images page
 
     Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/
 
-.
-
 From the navigation bar, select the Region in which to launch your instances. You can select any Region that's available to you, regardless of your location.
 
-In the navigation pane, choose AMIs.
+In the navigation pane on left, choose AMIs.
 
-(Optional) Use the Filter options to scope the list of displayed AMIs to see only the AMIs that interest you. 
-For example, to list all Palo Alto Networks AMIs provided by AWS, select Public images. Type **alo alto networks** in filter fiels to view list of AMI available in choosen Region. 
+Use the Filter options to scope the list of displayed AMIs to see only the AMIs that interest you. 
+For example, to list all Palo Alto Networks AMIs provided by AWS, select Public images. Type **palo alto networks** in filter fiels to view list of AMI available in choosen Region. 
 
 
 Then verify or adapt AMI ID if needed :
@@ -412,10 +410,10 @@ Then verify or adapt AMI ID if needed :
 
 7. You need to modify the deploy_panw.tf file with a Terminal or text editor.
 
-For both AWS and Microsoft Azure, the licensing options are bring your own license (BYOL) and pay as you go/consumption-based (PAYG) subscriptions.
+For both AWS, the licensing options are bring your own license (BYOL) and pay as you go/consumption-based (PAYG) subscriptions.
 
-    BYOL: Any one of the VM-Series models, along with the associated Subscriptions and Support, are purchased via normal Palo Alto Networks channels and then deployed through your AWS or Azure management console.
-    PAYG: Purchase the VM-Series and select Subscriptions and Premium Support as an hourly subscription bundle from the AWS Marketplace.
+    - BYOL: Any one of the VM-Series models, along with the associated Subscriptions and Support, are purchased via normal Palo Alto Networks channels and then deployed through your AWS or Azure management console.
+    - PAYG: Purchase the VM-Series and select Subscriptions and Premium Support as an hourly subscription bundle from the AWS Marketplace.
         Bundle 1 contents: VM-300 firewall license, Threat Prevention Subscription (inclusive of IPS, AV, Malware prevention) and Premium Support.  
         Bundle 2 contents: VM-300 firewall license, Threat Prevention (inclusive of IPS, AV, Malware prevention), WildFire™ threat intelligence service, URL Filtering, GlobalProtect Subscriptions and Premium Support.
 
