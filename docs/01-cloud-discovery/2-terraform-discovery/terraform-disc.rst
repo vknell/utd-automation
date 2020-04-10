@@ -266,90 +266,218 @@ Modify/Adapt Configuration
 
 To set the AWS access key and secret key of your IAM account for API access ( see the doc `here <https://utd-automation.readthedocs.io/en/latest/00-getting-started/aws-account.html>`_. ):
 
-# AWS Credential
-variable "access_key" {
-decscription = "AWS Access Key"
-default = "XXXX"
-}
-variable "secret_key" {
-description = "AWS Secret Key"
-default = " XXXX "
-}
+.. code-block:: bash
 
-Modify Region and AZ if needed:(The template is also setup to deploy in US East Region)
+    # AWS Credential
+    variable "access_key" {
+    decscription = "AWS Access Key"
+    default = "XXXX"
+    }
+    variable "secret_key" {
+    description = "AWS Secret Key"
+    default = " XXXX "
+    }
 
-# AWS Region and Availablility Zone
-variable "region" {
-default = "us-west-2"
-}
-variable "availability_zone" {
-default = "us-west-2a"
-}
+2  Modify variables.tf file with a Terminal or text editor with right information regarding Region and AZ if needed:(The template is also setup to deploy in US East Region)
+
+.. code-block:: bash
 
 
-
-2. Modify variables.tf file with a Terminal or text editor with right information regarding SSH keypair:
-
-variable "pavm_key_name" {
-description = "Name of the SSH keypair to use in AWS."
-default = "ec2sshkeypair.pem"
-}
-variable "pavm_key_path" {
-description = "Path to the private portion of the SSH key specified."
-default = "~/utd/first-step-terraform/ec2sshkeypair.pem"
-}
+        # AWS Region and Availablility Zone
+        variable "region" {
+        default = "us-west-2"
+        }
+        variable "availability_zone" {
+        default = "us-west-2a"
+        }
 
 
 
-3. You need to modify the deploy_panw.tf file with a Terminal or text editor.
+3. Modify variables.tf file with a Terminal or text editor with right information regarding SSH keypair:
+
+    .. code-block:: bash
+
+        variable "pavm_key_name" {
+        description = "Name of the SSH keypair to use in AWS."
+        default = "ec2sshkeypair.pem"
+        }
+        variable "pavm_key_path" {
+        description = "Path to the private portion of the SSH key specified."
+        default = "~/utd/first-step-terraform/ec2sshkeypair.pem"
+        }
+
+4. (Optional) Modify variables.tf file with a Terminal or text editor with right information regarding the VPC CIDR and VPC Subnets if needed:
+
+    .. code-block:: bash
+
+      
+        
+        Modify CIDR block if needed:
+        # VPC configuration
+        variable "vpc_cidr_block" {
+        default = "10.88.0.0/16"
+        }
+        variable "vpc_instance_tenancy" {
+        default = "default"
+        }
+        Modify VPC Name if needed:
+        variable "vpc_name" {
+        default = "PAVM VPC"
+        }
+        Modify CIDR Block of subnets if needed :
+        # Management subnet configuration
+        variable "mgmt_subnet_cidr_block" {
+        default = "10.88.0.0/24"
+        }
+        # Untrust subnet configuration
+        variable "untrust_subnet_cidr_block" {
+        default = "10.88.1.0/24"
+        }
+        # Trust subnet configuration
+        variable "trust_subnet_cidr_block" {
+        default = "10.88.66.0/24"
+        }
+
+5. Adapt variables.tf file with a Terminal or text editor with right information regarding AMI reference if needed:
+
+An Amazon Machine Image (AMI) provides the information required to launch an instance. You must specify an AMI when you launch an instance. You can launch multiple instances from a single AMI when you need multiple instances with the same configuration. You can use different AMIs to launch instances when you need instances with different configurations.
+
+An AMI includes the following:
+
+    - One or more EBS snapshots, or, for instance-store-backed AMIs, a template for the root volume of the instance (for example, an operating system, an application server, and applications).
+    - Launch permissions that control which AWS accounts can use the AMI to launch instances.
+    - A block device mapping that specifies the volumes to attach to the instance when it's launched.
+
+To find a Palo Alto Networks AMI using the Images page
+
+    Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/
+
+.
+
+From the navigation bar, select the Region in which to launch your instances. You can select any Region that's available to you, regardless of your location.
+
+In the navigation pane, choose AMIs.
+
+(Optional) Use the Filter options to scope the list of displayed AMIs to see only the AMIs that interest you. 
+For example, to list all Palo Alto Networks AMIs provided by AWS, select Public images. Type **alo alto networks** in filter fiels to view list of AMI available in choosen Region. 
+
+
+Then verify or adapt AMI ID if needed :
+
+.. code-block:: bash
+
+    # PAVM configuration
+    variable "pavm_payg_bun2_ami_id" {
+    default = {
+    eu-west-1 = "ami-5d92132e",
+    ap-southeast-1 = "ami-946da7f7",
+    ap-southeast-2 = "ami-d7c6e5b4",
+    ap-northeast-2 = "ami-fb08c195",
+    eu-central-1 = "ami-8be001e4",
+    ap-northeast-1 = "ami-b84b5ad6",}
+    }
+    us-east-1 = "ami-29a8a243",
+    us-west-1 = "ami-12d0ad72",
+    sa-east-1 = "ami-19810e75",
+    us-west-2 = "ami-e4be4b84"
+    variable "pavm_byol_ami_id" {
+    default = {
+    ap-south-1 = "ami-5c187233",
+    eu-west-1 = "ami-73971600",
+    ap-southeast-1 = "ami-0c60aa6f",
+    ap-southeast-2 = "ami-f9c4e79a",
+    ap-northeast-2 = "ami-fa08c194",
+    eu-central-1 = "ami-74e5041b",
+    ap-northeast-1 = "ami-e44b5a8a",
+    us-east-1 = "ami-1daaa077",
+    us-west-1 = "ami-acd7aacc",
+    sa-east-1 = "ami-1d860971",
+    us-west-2 = "ami-e7be4b87"
+    }
+    }
+
+
+6. Adapt variables.tf file with a Terminal or text editor with right information regarding Bucket S3 for Bootstraping where XXXX is the name of your bucket S3.
+
+.. code-block:: bash
+
+    variable "pavm_user_data" {
+    #default = "vmseries-bootstrap-aws-s3bucket=panw-mlue-bucket"
+    default = "vmseries-bootstrap-aws-s3bucket=XXXX"
+    }
+    variable "pavm_iam_instance_profile" {
+    default = "pa_bootstrap_s3_readonly"
+    }
+
+
+7. You need to modify the deploy_panw.tf file with a Terminal or text editor.
+
+For both AWS and Microsoft Azure, the licensing options are bring your own license (BYOL) and pay as you go/consumption-based (PAYG) subscriptions.
+
+    BYOL: Any one of the VM-Series models, along with the associated Subscriptions and Support, are purchased via normal Palo Alto Networks channels and then deployed through your AWS or Azure management console.
+    PAYG: Purchase the VM-Series and select Subscriptions and Premium Support as an hourly subscription bundle from the AWS Marketplace.
+        Bundle 1 contents: VM-300 firewall license, Threat Prevention Subscription (inclusive of IPS, AV, Malware prevention) and Premium Support.  
+        Bundle 2 contents: VM-300 firewall license, Threat Prevention (inclusive of IPS, AV, Malware prevention), WildFire™ threat intelligence service, URL Filtering, GlobalProtect Subscriptions and Premium Support.
+
 
 In deploy_panw.tf you can adapt the AMI information regarding your licensing
 type (BYOL or Bundle2):
 
-# Palo Alto VM-Series Firewall
-resource "aws_instance" "pavm" {
-#ami = "${lookup(var.pavm_byol_ami_id, var.region)}"
-ami = "${lookup(var.pavm_payg_bun2_ami_id, var.region)}"
-availability_zone = "${var.availability_zone}"
-tenancy = "default"
-ebs_optimized = false
-disable_api_termination = false
-instance_initiated_shutdown_behavior = "stop"
-instance_type = "${var.pavm_instance_type}"
-key_name = "${var.pavm_key_name}"
-monitoring = false
-vpc_security_group_ids = [ "${aws_security_group.default-security-gp.id}" ]
-subnet_id = "${aws_subnet.mgmt-subnet.id}"
-associate_public_ip_address = "${var.pavm_public_ip}"
-private_ip = "${var.pavm_mgmt_private_ip}"
-source_dest_check = false
-tags = {
-Name = "PAVM"
-}
+.. code-block:: bash
+
+    # Palo Alto VM-Series Firewall
+    resource "aws_instance" "pavm" {
+    #ami = "${lookup(var.pavm_byol_ami_id, var.region)}"
+    ami = "${lookup(var.pavm_payg_bun2_ami_id, var.region)}"
+    availability_zone = "${var.availability_zone}"
+    tenancy = "default"
+    ebs_optimized = false
+    disable_api_termination = false
+    instance_initiated_shutdown_behavior = "stop"
+    instance_type = "${var.pavm_instance_type}"
+    key_name = "${var.pavm_key_name}"
+    monitoring = false
+    vpc_security_group_ids = [ "${aws_security_group.default-security-gp.id}" ]
+    subnet_id = "${aws_subnet.mgmt-subnet.id}"
+    associate_public_ip_address = "${var.pavm_public_ip}"
+    private_ip = "${var.pavm_mgmt_private_ip}"
+    source_dest_check = false
+    tags = {
+    Name = "PAVM"
+    }
 
 
-4. You need to modify the deploy_vpc.tf file with a Terminal or text editor.
+
+8. (Optional) You need to modify the deploy_vpc.tf file with a Terminal or text editor if you want to use a VPC Endpoint.
+
+A VPC endpoint enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct 
+Connect connection. Instances in your VPC do not require public IP addresses to communicate with resources in the service. Traffic between your VPC and the other service does not leave the Amazon network.
+
+Endpoints are virtual devices. They are horizontally scaled, redundant, and highly available VPC components. They allow communication between instances in your VPC and services without imposing availability risks or 
+bandwidth constraints on your network traffic. 
 
 In deploy_vpc.tf you have to uncomment code to use Bootstrap S3 Bucket and give the S3 name bucket:
 
-# Create an endpoint for S3 bucket
-/* Uncomment to enable */
-resource "aws_vpc_endpoint" "private-s3" {
-vpc_id = "${aws_vpc.pavm-vpc.id}"
-service_name = "com.amazonaws.us-west-2.s3"
-/* Uncomment to enable policy
-policy = <<POLICY
-{
-"Statement": [{
-"Effect": "Deny",
-"Principal": "*",
-"Action": "s3:*",
-"Resource": "arn:aws:s3:::mys3bucketutd"
-}
-]
-}
-POLICY
-*/
+.. code-block:: bash
+
+    # Create an endpoint for S3 bucket
+    /* Uncomment to enable */
+    resource "aws_vpc_endpoint" "private-s3" {
+    vpc_id = "${aws_vpc.pavm-vpc.id}"
+    service_name = "com.amazonaws.us-west-2.s3"
+    /* Uncomment to enable policy
+    policy = <<POLICY
+    {
+    "Statement": [{
+    "Effect": "Deny",
+    "Principal": "*",
+    "Action": "s3:*",
+    "Resource": "arn:aws:s3:::mys3bucketutd"
+    }
+    ]
+    }
+    POLICY
+    */
 
 Nota : 
 - Value for ARN (**arn:aws:s3:::mys3bucketutd**) was been copied in in file named **ARNBucket** in ~/utd/first-step-terraform folder at the begining of activity (see ici)
