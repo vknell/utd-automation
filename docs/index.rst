@@ -111,3 +111,4 @@ Learning Outcomes
     08-appendix/terraform-commit
     03-run/1-terraform/background-terraform
     03-run/2-ansible/background-ansible
+    08-appendix/instructor
