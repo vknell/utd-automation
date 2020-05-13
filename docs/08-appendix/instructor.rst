@@ -111,6 +111,9 @@ Methode 2: You want install Terraform and extensions on Ubuntu 18.04 LTS
 
 .. code-block:: bash
 
+
+
+
         apt update
         apt upgrade -y
 
