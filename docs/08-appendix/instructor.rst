@@ -216,6 +216,7 @@ After "terraform apply -auto-approve" action is finished, you can view all IP ad
 
 
 
+
 Methode 3: You want install Terraform and extensions directly on your own device (Windows/Mac/Linux)
 ----------------------------------------------------------------------------------------------------
 Today the lab is tested with terraform 0.8 to 0.11. You can download the terraform binary and create a env PATH on your endpoint.
