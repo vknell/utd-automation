@@ -588,8 +588,6 @@ Etape 10 : Dans Select existing key pair or create a new key pair, choisissez l�
 Accès sécurisé à mon Serveur Web hébergé dans AWS
 Vous arrivez à l’étape finale du présent Lab. Vous pouvez ainsi tester la connectivité http vers votre serveur Web en naviguant vers l’adresse IP publique associée à l’interface *internet* de votre firewall. Vous pouvez aussi aller consulter les logs dans la section Monitor de votre NGFW et tester d’autres fonctionnalités de sécurité disponibles sur ce dernier.
 
-.. figure:: img/create-vpc-71.png
-
 
 (Optional) Create AWS Cloud Formation Template (CFT)
 ----------------------------------------------------
@@ -601,6 +599,4 @@ Suppression du VPC
 ------------------
 
 Allez dans Services > EC2 > VPC > Your VPC, sélectionnez le VPC *utd-activity1* ensuite allez dans Actions > Delete VPC et ensuite confirmez la suppression.
-
-.. figure:: img/create-vpc-72.png
 
