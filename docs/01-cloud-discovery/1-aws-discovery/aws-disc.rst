@@ -556,8 +556,18 @@ Etape 3 : Dans Configure Instance, sélectionnez le VPC *utd-activity1* dans Net
 
 Etape 4 : Dans Networks interfaces, ajoutez l’adresse IP *10.2.2.11* comme adresse IP Primaire
 
-Etape 5 : Dans cette étape, vous allez utiliser Cloud-Init pour initialiser l'instance avec les paramètres souhaités. Il faut copié coller le script bash suivant
+Etape 5 : Dans cette étape, vous allez utiliser Cloud-Init pour initialiser l'instance avec les paramètres souhaités. Il faut copié coller le script **bash** suivant
 Cliquez ensuite sur Next: Add Storage.
+
+.. code-block:: bash
+
+    #!/bin/bash
+    yum install httpd -y
+    systemctl start httpd
+    systemctl stop firewalld
+    cd /var/www/html
+    echo "I finished the first module!" > index.html
+
 
 .. code-block:: yaml
 
@@ -569,7 +579,8 @@ Cliquez ensuite sur Next: Add Storage.
     runcmd:
       - systemctl start httpd
       - systemctl enable httpd
-      - echo "I Finished module 1!!!" > /var/www/html/index.html
+      - echo "I finished the first module!" > /var/www/html/index.html
+
 
 .. figure:: img/create-vpc-67.png
 
@@ -598,5 +609,9 @@ https://docs.aws.amazon.com/cloudformation/index.html
 Suppression du VPC
 ------------------
 
-Allez dans Services > EC2 > VPC > Your VPC, sélectionnez le VPC *utd-activity1* ensuite allez dans Actions > Delete VPC et ensuite confirmez la suppression.
+Il faut supprimer dans cet ordre:
+Les instances (EC2 > Instances séléctionner les deux instances et les )
+Les Networks Interfaces VPC > Network Interfaces
+Les IP Elastiques VPC > Elastic IP addresses
+Puis allez dans Services > EC2 > VPC > Your VPC, sélectionnez le VPC *utd-activity1* ensuite allez dans Actions > Delete VPC et ensuite confirmez la suppression.
 
