@@ -16,7 +16,7 @@
 
 provider "aws" {
   region  = "${var.aws_region_name}"
-  version = "1.53.0"
+  version = "2.7"
 }
 
 resource "aws_key_pair" "ssh_key" {
@@ -66,8 +66,8 @@ module "firewall" {
 
   fw_dataplane_sg_id = "${aws_security_group.public_sg.id}"
 
-  fw_version          = "9.0.1"
-  fw_product_code     = "806j2of0qy5osgjjixq9gqc6g"
+  fw_version          = "9.1"
+  fw_product_code     = "hd44w1chf26uv4p52cdynb2o"
   fw_bootstrap_bucket = "${module.bootstrap_bucket.bootstrap_bucket_name}"
 
   tags {

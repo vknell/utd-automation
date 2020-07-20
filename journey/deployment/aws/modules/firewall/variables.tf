@@ -59,16 +59,28 @@ variable "fw_instance_type" {
 
 variable "fw_version" {
   description = "Firewall version to deploy."
-  default     = "8.1"
+  default     = "10.0"
 }
 
 # Firewall Product Code (Licensing Type)
+## 9.0
+# aws ec2 describe-images --filters "Name=product-code,Values=" Name=name,Values=PA-VM-AWS*9.0*  --region <region> --output json
 # 6njl1pau431dv1qxipg63mvah = BYOL
 # 6kxdw3bbmdeda3o6i1ggqt4km = Bundle 1
 # 806j2of0qy5osgjjixq9gqc6g = Bundle 2
+## 9.1
+# aws ec2 describe-images --filters "Name=product-code,Values=" Name=name,Values=PA-VM-AWS*9.1*  --region <region> --output json
+# 6njl1pau431dv1qxipg63mvah = BYOL
+# e9yfvyj3uag5uo5j2hjikv74n = Bundle 1
+# hd44w1chf26uv4p52cdynb2o = Bundle 2
+## 10.0
+# aws ec2 describe-images --filters "Name=product-code,Values=" Name=name,Values=PA-VM-AWS*10.0*  --region <region> --output json
+# 6njl1pau431dv1qxipg63mvah = BYOL
+# e9yfvyj3uag5uo5j2hjikv74n = Bundle 1
+# hd44w1chf26uv4p52cdynb2o = Bundle 2
 
 variable "fw_product_code" {
-  default     = "6njl1pau431dv1qxipg63mvah"
+  default     = "hd44w1chf26uv4p52cdynb2o"
   description = "Product code for VM-series (BYOL, Bundle 1, Bundle 2)"
 }
 
