@@ -15,7 +15,7 @@
 ############################################################################################
 
 resource "aws_s3_bucket" "bootstrap_bucket" {
-  bucket_prefix = "multicloud-automation-lab-"
+  bucket_prefix = "utd-panw-aws-"
   acl           = "private"
 }
 

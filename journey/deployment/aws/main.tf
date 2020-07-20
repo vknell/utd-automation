@@ -20,7 +20,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "ssh_key" {
-  key_name   = "Multicloud-AWS"
+  key_name   = "UTD-PANW-AWS"
   public_key = "${file(var.public_key_file)}"
 }
 
@@ -34,7 +34,7 @@ module "bootstrap_bucket" {
 module "vpc" {
   source = "./modules/vpc"
 
-  name = "Multicloud-AWS"
+  name = "UTD-PANW-AWS"
   cidr = "10.5.0.0/16"
   az   = "${var.aws_az_name}"
 
@@ -44,7 +44,7 @@ module "vpc" {
   db_subnet     = "10.5.3.0/24"
 
   tags {
-    Environment = "Multicloud-AWS"
+    Environment = "UTD-PANW-AWS"
   }
 }
 
@@ -71,7 +71,7 @@ module "firewall" {
   fw_bootstrap_bucket = "${module.bootstrap_bucket.bootstrap_bucket_name}"
 
   tags {
-    Environment = "Multicloud-AWS"
+    Environment = "UTD-PANW-AWS"
   }
 }
 
@@ -175,7 +175,7 @@ module "web" {
   private_ip   = "10.5.2.5"
 
   tags {
-    Environment = "Multicloud-AWS"
+    Environment = "UTD-PANW-AWS"
     server-type = "web"
   }
 }
@@ -188,7 +188,7 @@ module "db" {
   private_ip   = "10.5.3.5"
 
   tags {
-    Environment = "Multicloud-AWS"
+    Environment = "UTD-PANW-AWS"
     server-type = "database"
   }
 }
@@ -199,7 +199,7 @@ module "db" {
 #  ssh_key_name          = "${aws_key_pair.ssh_key.key_name}"
 #  subnet_id             = "${module.vpc.db_subnet_id}"
 #  tags {
-#    Environment         = "Multicloud-AWS"
+#    Environment         = "UTD-PANW-AWS"
 #    server-type         = "database"
 #  }
 #}

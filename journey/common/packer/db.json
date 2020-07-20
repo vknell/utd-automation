@@ -32,7 +32,7 @@
             "ssh_username": "packer",
             "zone": "us-central1-b",
             "image_name": "db-{{timestamp}}",
-            "image_description": "Multicloud automation lab database server image"
+            "image_description": "UTD Automation lab database server image"
         }
     ],
     "provisioners": [
