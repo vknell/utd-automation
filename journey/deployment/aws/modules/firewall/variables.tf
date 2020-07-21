@@ -81,7 +81,7 @@ variable "fw_version" {
 
 variable "fw_product_code" {
   default     = "hd44w1chf26uv4p52cdynb2o"
-  description = "Product code for VM-series (BYOL, Bundle 1, Bundle 2)"
+  description = "Product code for VM-series (Bundle 2)"
 }
 
 variable "fw_bootstrap_bucket" {
