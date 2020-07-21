@@ -3,7 +3,7 @@
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$kaylxbdk$tP035CcZkqDNIk5sxYBaP/</phash>
+        <phash>$1$poiddjri$h72yhfgryxLmPBFHDZ3zT.</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
@@ -262,13 +262,13 @@
               </recurring>
             </threats>
           </update-schedule>
-          <timezone>US/Pacific</timezone>
+          <timezone>Etc/UTC</timezone>
           <service>
             <disable-telnet>yes</disable-telnet>
             <disable-http>yes</disable-http>
           </service>
-          <hostname>lab-fw</hostname>
-          <login-banner>Multi-Cloud Automation Lab</login-banner>
+          <hostname>utd-ngfw</hostname>
+          <login-banner>UTD Automation: Welcome!</login-banner>
         </system>
         <setting>
           <config>
