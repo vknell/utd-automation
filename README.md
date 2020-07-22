@@ -8,3 +8,4 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENS
 ## To do
 
 - [ ] Change AMI for Web & DB
+- [ ] Change bootstrap for version 9.1 and 10 (Upgrade and export)

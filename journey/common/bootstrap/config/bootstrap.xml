@@ -268,7 +268,7 @@
             <disable-http>yes</disable-http>
           </service>
           <hostname>utd-ngfw</hostname>
-          <login-banner>UTD Automation: Welcome!</login-banner>
+          <login-banner>UTD Automation: Palo Alto Networks VM-Series</login-banner>
         </system>
         <setting>
           <config>
