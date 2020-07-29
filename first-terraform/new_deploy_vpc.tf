@@ -179,23 +179,7 @@ resource "aws_security_group" "default-security-gp" {
 /*  Uncomment to enable */
 resource "aws_vpc_endpoint" "private-s3" {
     vpc_id = "${aws_vpc.pavm-vpc.id}"
-    service_name = "com.amazonaws.us-east-1.s3"
-
-    /*  Uncomment to enable policy
-    policy = <<POLICY
-    {
-        "Statement": [
-        {
-            "Effect": "Deny",
-            "Principal": "*",
-            "Action": "s3:*",
-            "Resource": "arn:aws:s3:::ha1-dev-paloalto/*"
-        }
-    ]
-    }
-    POLICY
-    */
-
+    service_name = "com.amazonaws.us-east-2.s3"
     route_table_ids = [
         "${aws_route_table.mgmt-routetable.id}"
         #"${aws_route_table.trust-routetable.id}"
@@ -216,6 +200,7 @@ resource "aws_internet_gateway" "nat-igw" {
         Name = "NAT Internet Gateway"
     }
 }
+
 resource "aws_subnet" "nat-subnet" {
     vpc_id = "${aws_vpc.pavm-vpc.id}"
     cidr_block = "10.88.10.0/24"
@@ -224,12 +209,14 @@ resource "aws_subnet" "nat-subnet" {
         Name = "nat-subnet"
     }
 }
+
 resource "aws_route_table" "nat-routetable" {
     vpc_id = "${aws_vpc.pavm-vpc.id}"
     tags {
         Name = "nat-routetable"
     }
 }
+
 resource "aws_route" "nat-route" {
     route_table_id = "${aws_route_table.nat-routetable.id}"
     destination_cidr_block = "0.0.0.0/0"
@@ -238,13 +225,16 @@ resource "aws_route" "nat-route" {
         "aws_route_table.nat-routetable"
     ]
 }
+
 resource "aws_route_table_association" "nat-routetable-association" {
     subnet_id = "${aws_subnet.nat-subnet.id}"
     route_table_id = "${aws_route_table.nat-routetable.id}"
 }
+
 resource "aws_eip" "nat-eip" {
     vpc = true
 }
+
 resource "aws_nat_gateway" "gw" {
     allocation_id = "${aws_eip.nat-eip.id}"
     subnet_id = "${aws_subnet.nat-subnet.id}"
@@ -252,6 +242,7 @@ resource "aws_nat_gateway" "gw" {
         "aws_internet_gateway.nat-igw"
     ]
 }
+
 resource "aws_route" "gw-route" {
     route_table_id = "${aws_route_table.mgmt-routetable.id}"
     destination_cidr_block = "0.0.0.0/0"
@@ -271,4 +262,4 @@ output "subnet-Management-Subnet-ID" {
 
 output "vpc-Default-Security-Group-ID" {
     value = "${aws_security_group.default-security-gp.id}"
-} 
+}
