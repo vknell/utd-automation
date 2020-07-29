@@ -45,7 +45,7 @@ variable "trust_subnet_cidr_block" {
     default = "10.88.66.0/24"
 }
 
-# PAVM configuration
+# PAVM configuration - PAN-OS 10.0
 variable "pavm_payg_bun2_ami_id" {
     default = {
         eu-west-1 = "ami-5d92132e",
@@ -54,7 +54,7 @@ variable "pavm_payg_bun2_ami_id" {
         ap-northeast-2 = "ami-fb08c195",
         eu-central-1 = "ami-8be001e4",
         ap-northeast-1 = "ami-b84b5ad6",
-        us-east-1 = "ami-29a8a243",
+        us-east-1 = "ami-0f78854f1886d3102",
         us-west-1 = "ami-12d0ad72",
         sa-east-1 = "ami-19810e75",
         us-west-2 = "ami-e4be4b84"
