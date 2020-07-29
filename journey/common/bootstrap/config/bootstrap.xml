@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<config version="9.0.0" urldb="paloaltonetworks">
+<config version="9.1.0" urldb="paloaltonetworks">
   <mgt-config>
     <users>
       <entry name="admin">
@@ -9,6 +9,7 @@
             <superuser>yes</superuser>
           </role-based>
         </permissions>
+        <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFDQVFEQ1VLdUkxS2JPOHJFTC81ZG94ajVZcFdMSzNPWVRrRUJuNnJqWll4UnRqTERLR1RlbGRjUC9FL09RREdzUEVHb0g5L2NMU3VoOGdiV1ZxUG43SjB2VUdGcTZqdlRLQmlVb21TUGZUazRoaG0wdnpwVkhmbHI5VWJLanllNVVOYW1BN2tQVSsyb0JkK01QbXd5MExnaG1ETzFGMTJCb0pld3cxcE5uekdtSEdLQlFjZ2pDM1FBcEJuN1F5QmlacW5RMExBREQwWWY0VTZ2WERmOU5hZ21IdWI5cjRES0NZbVg4TzUxTXhvcDZxMzBnRmdncGs1NlZiQTNJTWl5MTJWSHlLN1pSVWpJMHRDdzhlZ1NxOVVleUlIOEwwVGMyQjJvdXZkTnVlZXF6NWI3TEtGeTdvSUpYdXhmTGVBYzZIdmpDZTRieERLdmRDWExHaFJvR3laOFBJdG9xSkZudUViS0V6RTZ0M2hHNFdkZVlrL2NUTFVyWVRlY20yQjg1aFZKaWNyS2RKclRmb0QvTVdzOUZXR1VkOW50dW5vbE5kVkc5Ti85WjlWbmtDNlBPYTA5NVFTVy9nRXk5ZDdBYzFFNllpZ1NINTQyakxIRVB1QmluWVJBeHZXV0xwWUljVGZvL2crWVdINEVEQVQya2haS0dpbk81YXNGbktpSTd1cDJRQ1g4ZVcwREtVVHRiN2dNRU5VaHdvUXdRREljcEg4Y0tvRC9lMTVCdzBmdStRYlROQVVnd0lJU0I3SlZhMkphaE8rL1pWY3EvcmtmeERwRGZna0Y0OG83WGxZcjVJd0doQlB1SnRXNDRYOEI4eWdqcURnaXJpRUdkUGJLS2VWbCtiYVp5c3plQktCMnVqbjBoaG44S0loQnI2Y0ZadEVKaUFSbmVJN2w2YlE9PSBVVEQtUEFOVy1BV1M=</public-key>
       </entry>
     </users>
   </mgt-config>
@@ -191,32 +192,36 @@
         <qos>
           <profile>
             <entry name="default">
-              <class>
-                <entry name="class1">
-                  <priority>real-time</priority>
-                </entry>
-                <entry name="class2">
-                  <priority>high</priority>
-                </entry>
-                <entry name="class3">
-                  <priority>high</priority>
-                </entry>
-                <entry name="class4">
-                  <priority>medium</priority>
-                </entry>
-                <entry name="class5">
-                  <priority>medium</priority>
-                </entry>
-                <entry name="class6">
-                  <priority>low</priority>
-                </entry>
-                <entry name="class7">
-                  <priority>low</priority>
-                </entry>
-                <entry name="class8">
-                  <priority>low</priority>
-                </entry>
-              </class>
+              <class-bandwidth-type>
+                <mbps>
+                  <class>
+                    <entry name="class1">
+                      <priority>real-time</priority>
+                    </entry>
+                    <entry name="class2">
+                      <priority>high</priority>
+                    </entry>
+                    <entry name="class3">
+                      <priority>high</priority>
+                    </entry>
+                    <entry name="class4">
+                      <priority>medium</priority>
+                    </entry>
+                    <entry name="class5">
+                      <priority>medium</priority>
+                    </entry>
+                    <entry name="class6">
+                      <priority>low</priority>
+                    </entry>
+                    <entry name="class7">
+                      <priority>low</priority>
+                    </entry>
+                    <entry name="class8">
+                      <priority>low</priority>
+                    </entry>
+                  </class>
+                </mbps>
+              </class-bandwidth-type>
             </entry>
           </profile>
         </qos>
@@ -245,9 +250,9 @@
           <type>
             <dhcp-client>
               <send-hostname>yes</send-hostname>
-              <send-client-id>no</send-client-id>
-              <accept-dhcp-hostname>no</accept-dhcp-hostname>
-              <accept-dhcp-domain>no</accept-dhcp-domain>
+              <send-client-id>yes</send-client-id>
+              <accept-dhcp-hostname>yes</accept-dhcp-hostname>
+              <accept-dhcp-domain>yes</accept-dhcp-domain>
             </dhcp-client>
           </type>
           <update-server>updates.paloaltonetworks.com</update-server>
@@ -267,7 +272,7 @@
             <disable-telnet>yes</disable-telnet>
             <disable-http>yes</disable-http>
           </service>
-          <hostname>utd-ngfw</hostname>
+          <hostname>lab-fw</hostname>
           <login-banner>UTD Automation: Palo Alto Networks VM-Series</login-banner>
         </system>
         <setting>
@@ -277,15 +282,18 @@
           <management>
             <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
             <initcfg>
+              <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFDQVFEQ1VLdUkxS2JPOHJFTC81ZG94ajVZcFdMSzNPWVRrRUJuNnJqWll4UnRqTERLR1RlbGRjUC9FL09RREdzUEVHb0g5L2NMU3VoOGdiV1ZxUG43SjB2VUdGcTZqdlRLQmlVb21TUGZUazRoaG0wdnpwVkhmbHI5VWJLanllNVVOYW1BN2tQVSsyb0JkK01QbXd5MExnaG1ETzFGMTJCb0pld3cxcE5uekdtSEdLQlFjZ2pDM1FBcEJuN1F5QmlacW5RMExBREQwWWY0VTZ2WERmOU5hZ21IdWI5cjRES0NZbVg4TzUxTXhvcDZxMzBnRmdncGs1NlZiQTNJTWl5MTJWSHlLN1pSVWpJMHRDdzhlZ1NxOVVleUlIOEwwVGMyQjJvdXZkTnVlZXF6NWI3TEtGeTdvSUpYdXhmTGVBYzZIdmpDZTRieERLdmRDWExHaFJvR3laOFBJdG9xSkZudUViS0V6RTZ0M2hHNFdkZVlrL2NUTFVyWVRlY20yQjg1aFZKaWNyS2RKclRmb0QvTVdzOUZXR1VkOW50dW5vbE5kVkc5Ti85WjlWbmtDNlBPYTA5NVFTVy9nRXk5ZDdBYzFFNllpZ1NINTQyakxIRVB1QmluWVJBeHZXV0xwWUljVGZvL2crWVdINEVEQVQya2haS0dpbk81YXNGbktpSTd1cDJRQ1g4ZVcwREtVVHRiN2dNRU5VaHdvUXdRREljcEg4Y0tvRC9lMTVCdzBmdStRYlROQVVnd0lJU0I3SlZhMkphaE8rL1pWY3EvcmtmeERwRGZna0Y0OG83WGxZcjVJd0doQlB1SnRXNDRYOEI4eWdqcURnaXJpRUdkUGJLS2VWbCtiYVp5c3plQktCMnVqbjBoaG44S0loQnI2Y0ZadEVKaUFSbmVJN2w2YlE9PSBVVEQtUEFOVy1BV1M=</public-key>
               <type>
                 <dhcp-client>
                   <send-hostname>yes</send-hostname>
-                  <send-client-id>no</send-client-id>
-                  <accept-dhcp-hostname>no</accept-dhcp-hostname>
-                  <accept-dhcp-domain>no</accept-dhcp-domain>
+                  <send-client-id>yes</send-client-id>
+                  <accept-dhcp-hostname>yes</accept-dhcp-hostname>
+                  <accept-dhcp-domain>yes</accept-dhcp-domain>
                 </dhcp-client>
               </type>
-              <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFEUi8rL0VpeGwybEMrNkVsVjVVampGbVJiSGFzSStZOEpaVityamFCeVlOMlFPOCtjSGR4RHhOSU40ZHJRSy9KK3NUYXBjY1J1eUtZSU5ZVGQwSE9Ba1dWL043TkJnOWtZVUI5TjJueFBzSzJBYVgwZWFXK2lXRkd6V3ZyMERjZm1zUzN6K3VVVjNxOUlZa2JhY0hyM1FvZE5COXVWSWxOalg1NU1US1oyQW43OXJQenNBOXNHSkx3RnBORE41MGZiamtqajFRZjdSUlNpcUpEZWhlT3JOeU5CVzd4TVJPWS9QQ3E2WWZXSG83TllYRll4ekJwQzJhUElaclhjdHNNWG1OMTZoYWlxelhBV1Y3U3I3QWVhazBNc2I1OUJyZWlwRFlSUlBXUnpTMzE4a1lYSFdTSjF3R3NIUlMrU1RWeXB3c2RvcE5aZldaR3BrYllWNjkrM3ggUGFsbyBBbHRvIE5ldHdvcmtzIEFXUw==</public-key>
+              <hostname>lab-fw</hostname>
+              <dns-primary>8.8.8.8</dns-primary>
+              <dns-secondary>8.8.4.4</dns-secondary>
             </initcfg>
           </management>
         </setting>

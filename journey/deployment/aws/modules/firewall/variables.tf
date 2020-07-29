@@ -59,7 +59,7 @@ variable "fw_instance_type" {
 
 variable "fw_version" {
   description = "Firewall version to deploy."
-  default     = "9.0"
+  default     = "9.1.3"
 }
 
 # Firewall Product Code (Licensing Type)
@@ -80,7 +80,7 @@ variable "fw_version" {
 # hd44w1chf26uv4p52cdynb2o = Bundle 2
 
 variable "fw_product_code" {
-  default     = "806j2of0qy5osgjjixq9gqc6g"
+  default     = "hd44w1chf26uv4p52cdynb2o"
   description = "Product code for VM-series (Bundle 2)"
 }
 
