@@ -1,6 +1,6 @@
 # AWS Credential
 variable "access_key" {
-    decscription = "AWS Access Key"
+    description = "AWS Access Key"
     default = ""
 }
 variable "secret_key" {
