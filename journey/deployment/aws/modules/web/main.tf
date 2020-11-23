@@ -19,16 +19,25 @@ data "aws_ami" "web_ami" {
 
   filter {
     name   = "name"
-    values = ["multicloud-aws-web-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*"]
   }
 
-  owners = ["640680520898"]
+  owners = ["099720109477"]
 }
 
 resource "aws_instance" "web" {
   ami           = "${data.aws_ami.web_ami.id}"
   instance_type = "t2.micro"
   key_name      = "${var.ssh_key_name}"
+
+  user_data = <<-EOF
+            #!/bin/bash
+            apt-get update
+            # apt-get install apache2 php libapache2-mod-php mariadb-server mariadb-client php-mysql
+            # wget https://wordpress.org/latest.zip
+            echo "Pew Pew Pew" > index.html
+            nohup python3 -m http.server "${var.server_port}" &
+            EOF
 
   network_interface {
     device_index         = 0
