@@ -32,6 +32,17 @@ resource "aws_instance" "web" {
 
   user_data = <<-EOF
             #!/bin/bash
+            # check for internet connectivity
+            while true
+              do
+                resp=$(curl -s -S "http://captive.apple.com")
+                echo $resp
+                if [[ $resp == *"Success"* ]] ; then
+                  break
+                fi
+                sleep 10s
+              done
+            # launch the startup script
             apt-get update
             apt-get install apache2 php libapache2-mod-php mariadb-client php-mysql -y
             echo "Pew Pew Pew" > /var/www/html/index.html

@@ -31,6 +31,17 @@ resource "aws_instance" "db" {
   key_name      = "${var.ssh_key_name}"
   user_data = <<-EOF
             #!/bin/bash
+            # check for internet connectivity
+            while true
+              do
+                resp=$(curl -s -S "http://captive.apple.com")
+                echo $resp
+                if [[ $resp == *"Success"* ]] ; then
+                  break
+                fi
+                sleep 10s
+              done
+            # launch the startup script
             apt-get update
             apt-get install mariadb-server -y
             mysql -u root <<_EOF_
