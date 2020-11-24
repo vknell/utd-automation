@@ -50,9 +50,9 @@ resource "aws_instance" "web" {
             tar -xzf latest.tar.gz -C /var/www/html/
             cp /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
             sed -i 's/database_name_here/wordpress/g' /var/www/html/wordpress/wp-config.php
-            sed -i 's/pan_wpweb/wordpress/g' /var/www/html/wordpress/wp-config.php
-            sed -i 's/paloalto2005/wordpress/g' /var/www/html/wordpress/wp-config.php
-            sed -i 's/10\.5\.2\.5/wordpress/g' /var/www/html/wordpress/wp-config.php
+            sed -i 's/username_here/pan_wpweb/g' /var/www/html/wordpress/wp-config.php
+            sed -i 's/password_here/paloalto2005/g' /var/www/html/wordpress/wp-config.php
+            sed -i 's/localhost/10\.5\.3\.5/g' /var/www/html/wordpress/wp-config.php
             chown -R www-data:www-data /var/www/html/
             systemctl restart apache2
             EOF

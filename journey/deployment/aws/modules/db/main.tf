@@ -48,8 +48,8 @@ resource "aws_instance" "db" {
             CREATE DATABASE wordpress;
             CREATE USER 'pan_wpweb'@'localhost' IDENTIFIED BY 'paloalto2005';
             GRANT ALL PRIVILEGES ON wordpress.* TO 'pan_wpweb'@'localhost';
-            CREATE USER 'pan_wpweb'@'10.5.2.5' IDENTIFIED BY 'paloalto2005';
-            GRANT ALL PRIVILEGES ON wordpress.* TO 'pan_wpweb'@'10.5.2.5';
+            CREATE USER 'pan_wpweb'@'%' IDENTIFIED BY 'paloalto2005';
+            GRANT ALL PRIVILEGES ON wordpress.* TO 'pan_wpweb'@'%';
             FLUSH PRIVILEGES;
             exit
             _EOF_
