@@ -19,16 +19,33 @@ data "aws_ami" "db_ami" {
 
   filter {
     name   = "name"
-    values = ["multicloud-aws-db-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*"]
   }
 
-  owners = ["640680520898"]
+  owners = ["099720109477"]
 }
 
 resource "aws_instance" "db" {
   ami           = "${data.aws_ami.db_ami.id}"
   instance_type = "t2.micro"
   key_name      = "${var.ssh_key_name}"
+  user_data = <<-EOF
+            #!/bin/bash
+            apt-get update
+            apt-get install mariadb-server -y
+            mysql -u root <<_EOF_
+            CREATE DATABASE wordpress;
+            CREATE USER 'pan_wpweb'@'localhost' IDENTIFIED BY 'paloalto2005';
+            GRANT ALL PRIVILEGES ON wordpress.* TO 'pan_wpweb'@'localhost';
+            CREATE USER 'pan_wpweb'@'10.5.2.5' IDENTIFIED BY 'paloalto2005';
+            GRANT ALL PRIVILEGES ON wordpress.* TO 'pan_wpweb'@'10.5.2.5';
+            FLUSH PRIVILEGES;
+            exit
+            _EOF_
+            sed -i 's/127\.0\.0\.1/10\.5\.3\.5/g' /etc/mysql/mariadb.conf.d/50-server.cnf
+            systemctl restart mysql
+            ufw allow mysql
+            EOF
 
   network_interface {
     device_index         = 0

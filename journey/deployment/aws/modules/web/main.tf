@@ -33,10 +33,17 @@ resource "aws_instance" "web" {
   user_data = <<-EOF
             #!/bin/bash
             apt-get update
-            # apt-get install apache2 php libapache2-mod-php mariadb-server mariadb-client php-mysql
-            # wget https://wordpress.org/latest.zip
-            echo "Pew Pew Pew" > index.html
-            nohup python3 -m http.server "${var.server_port}" &
+            apt-get install apache2 php libapache2-mod-php mariadb-client php-mysql -y
+            echo "Pew Pew Pew" > /var/www/html/index.html
+            wget https://wordpress.org/latest.tar.gz
+            tar -xzf latest.tar.gz -C /var/www/html/
+            cp /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+            sed -i 's/database_name_here/wordpress/g' /var/www/html/wordpress/wp-config.php
+            sed -i 's/pan_wpweb/wordpress/g' /var/www/html/wordpress/wp-config.php
+            sed -i 's/paloalto2005/wordpress/g' /var/www/html/wordpress/wp-config.php
+            sed -i 's/10\.5\.2\.5/wordpress/g' /var/www/html/wordpress/wp-config.php
+            chown -R www-data:www-data /var/www/html/
+            systemctl restart apache2
             EOF
 
   network_interface {

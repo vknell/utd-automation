@@ -251,8 +251,8 @@
             <dhcp-client>
               <send-hostname>yes</send-hostname>
               <send-client-id>yes</send-client-id>
-              <accept-dhcp-hostname>yes</accept-dhcp-hostname>
-              <accept-dhcp-domain>yes</accept-dhcp-domain>
+              <accept-dhcp-hostname>no</accept-dhcp-hostname>
+              <accept-dhcp-domain>no</accept-dhcp-domain>
             </dhcp-client>
           </type>
           <update-server>updates.paloaltonetworks.com</update-server>
@@ -287,8 +287,8 @@
                 <dhcp-client>
                   <send-hostname>yes</send-hostname>
                   <send-client-id>yes</send-client-id>
-                  <accept-dhcp-hostname>yes</accept-dhcp-hostname>
-                  <accept-dhcp-domain>yes</accept-dhcp-domain>
+                  <accept-dhcp-hostname>no</accept-dhcp-hostname>
+                  <accept-dhcp-domain>no</accept-dhcp-domain>
                 </dhcp-client>
               </type>
               <hostname>lab-fw</hostname>
