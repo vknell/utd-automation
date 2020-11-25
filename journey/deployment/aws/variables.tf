@@ -34,3 +34,12 @@ variable "allowed_mgmt_cidr" {
   type        = list
   default     = ["0.0.0.0/0"]
 }
+
+variable "student_name" {
+  description = "The student name"
+  type        = string
+  validation {
+    condition     = can(regex("^Student", var.student_name))
+    error_message = "The name must start with \"Student\" and the digit of your pod."
+  }
+}

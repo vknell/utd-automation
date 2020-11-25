@@ -118,7 +118,7 @@ resource "aws_eip_association" "fw_eth1_eip_assoc" {
 }
 
 resource "aws_iam_role" "fw_bootstrap_role" {
-  name = "FirewallBootstrapRole"
+  name = join("", list("FirewallBootstrapRole", var.student_name))
 
   assume_role_policy = <<-EOF
 {
@@ -137,7 +137,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "fw_bootstrap_role_policy" {
-  name = "FirewallBootstrapRolePolicy"
+  name = join("", list("FirewallBootstrapRolePolicy", var.student_name))
   role = aws_iam_role.fw_bootstrap_role.id
   
   policy = <<-EOF
@@ -155,7 +155,7 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "fw_bootstrap_instance_profile" {
-  name = "FirewallBootstrapInstanceProfile"
+  name = join("", list("FirewallBootstrapInstanceProfile", var.student_name))
   role = aws_iam_role.fw_bootstrap_role.name
   path = "/"
 }

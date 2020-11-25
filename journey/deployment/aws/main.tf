@@ -20,7 +20,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "ssh_key" {
-  key_name   = "UTD-PANW-AWS"
+  key_name   = "UTD-PANW-AWS-${var.student_name}"
   public_key = file(var.public_key_file)
 }
 
@@ -34,7 +34,7 @@ module "bootstrap_bucket" {
 module "vpc" {
   source = "./modules/vpc"
 
-  name = "UTD-PANW-AWS"
+  name = "UTD-PANW-AWS-${var.student_name}"
   cidr = "10.5.0.0/16"
   az   = var.aws_az_name
 
@@ -51,10 +51,11 @@ module "vpc" {
 module "firewall" {
   source = "./modules/firewall"
 
-  name = "vm-series"
+  name = "vm-series-${var.student_name}"
 
   ssh_key_name = aws_key_pair.ssh_key.key_name
   vpc_id       = module.vpc.vpc_id
+  student_name = var.student_name
 
   fw_mgmt_subnet_id = module.vpc.mgmt_subnet_id
   fw_mgmt_ip        = "10.5.0.4"
@@ -177,7 +178,7 @@ resource "aws_security_group" "firewall_mgmt_sg" {
 
 module "web" {
   source       = "./modules/web"
-  name         = "web-vm"
+  name         = "web-vm-${var.student_name}"
   ssh_key_name = aws_key_pair.ssh_key.key_name
   subnet_id    = module.vpc.web_subnet_id
   private_ip   = "10.5.2.5"
@@ -190,7 +191,7 @@ module "web" {
 
 module "db" {
   source       = "./modules/db"
-  name         = "db-vm"
+  name         = "db-vm-${var.student_name}"
   ssh_key_name = aws_key_pair.ssh_key.key_name
   subnet_id    = module.vpc.db_subnet_id
   private_ip   = "10.5.3.5"

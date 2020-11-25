@@ -104,3 +104,8 @@ variable "fw_eth3_ip" {
   description = " IP address for firewall ethernet1/3."
   default     = "10.5.3.4"
 }
+
+variable "student_name" {
+  description = "The student name"
+  type        = string
+}
