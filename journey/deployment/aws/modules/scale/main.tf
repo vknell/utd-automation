@@ -19,10 +19,10 @@ data "aws_ami" "db_ami" {
 
   filter {
     name   = "name"
-    values = ["multicloud-aws-db-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server*"]
   }
 
-  owners = ["640680520898"]
+  owners = ["099720109477"]
 }
 
 resource "aws_instance" "db" {
@@ -30,6 +30,34 @@ resource "aws_instance" "db" {
   instance_type = "t2.micro"
   count         = 4
   key_name      = var.ssh_key_name
+  user_data = <<-EOF
+            #!/bin/bash
+            # check for internet connectivity
+            while true
+              do
+                resp=$(curl -s -S "http://captive.apple.com")
+                echo $resp
+                if [[ $resp == *"Success"* ]] ; then
+                  break
+                fi
+                sleep 10s
+              done
+            # launch the startup script
+            apt-get update
+            apt-get install mariadb-server -y
+            mysql -u root <<_EOF_
+            CREATE DATABASE wordpress;
+            CREATE USER 'pan_wpweb'@'localhost' IDENTIFIED BY 'paloalto2005';
+            GRANT ALL PRIVILEGES ON wordpress.* TO 'pan_wpweb'@'localhost';
+            CREATE USER 'pan_wpweb'@'%' IDENTIFIED BY 'paloalto2005';
+            GRANT ALL PRIVILEGES ON wordpress.* TO 'pan_wpweb'@'%';
+            FLUSH PRIVILEGES;
+            exit
+            _EOF_
+            sed -i 's/127\.0\.0\.1/10\.5\.3\.5/g' /etc/mysql/mariadb.conf.d/50-server.cnf
+            systemctl restart mysql
+            ufw allow mysql
+            EOF
   subnet_id     = var.subnet_id
 
   tags = merge(map("Name", var.name), var.tags)

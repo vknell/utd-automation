@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<config version="10.0.2" urldb="paloaltonetworks">
+<config version="10.0.0" urldb="paloaltonetworks">
   <mgt-config>
     <users>
       <entry name="admin">
@@ -261,7 +261,7 @@
           <type>
             <dhcp-client>
               <send-hostname>yes</send-hostname>
-              <send-client-id>no</send-client-id>
+              <send-client-id>yes</send-client-id>
               <accept-dhcp-hostname>no</accept-dhcp-hostname>
               <accept-dhcp-domain>no</accept-dhcp-domain>
             </dhcp-client>
@@ -314,6 +314,20 @@
             <motd-enable>yes</motd-enable>
             <message>Pew Pew Pew</message>
           </motd-and-banner>
+          <ntp-servers>
+            <primary-ntp-server>
+              <ntp-server-address>0.pool.ntp.org</ntp-server-address>
+              <authentication-type>
+                <none/>
+              </authentication-type>
+            </primary-ntp-server>
+            <secondary-ntp-server>
+              <ntp-server-address>1.pool.ntp.org</ntp-server-address>
+              <authentication-type>
+                <none/>
+              </authentication-type>
+            </secondary-ntp-server>
+          </ntp-servers>
         </system>
         <setting>
           <config>
@@ -321,17 +335,10 @@
           </config>
           <management>
             <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
-            <initcfg>
-              <type>
-                <dhcp-client>
-                  <send-hostname>yes</send-hostname>
-                  <send-client-id>no</send-client-id>
-                  <accept-dhcp-hostname>no</accept-dhcp-hostname>
-                  <accept-dhcp-domain>no</accept-dhcp-domain>
-                </dhcp-client>
-              </type>
-            </initcfg>
           </management>
+          <wildfire>
+            <public-cloud-server>eu.wildfire.paloaltonetworks.com</public-cloud-server>
+          </wildfire>
         </setting>
       </deviceconfig>
       <vsys>
