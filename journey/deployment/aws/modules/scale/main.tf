@@ -26,11 +26,11 @@ data "aws_ami" "db_ami" {
 }
 
 resource "aws_instance" "db" {
-  ami           = "${data.aws_ami.db_ami.id}"
+  ami           = data.aws_ami.db_ami.id
   instance_type = "t2.micro"
   count         = 4
-  key_name      = "${var.ssh_key_name}"
-  subnet_id     = "${var.subnet_id}"
+  key_name      = var.ssh_key_name
+  subnet_id     = var.subnet_id
 
-  tags = "${merge(map("Name", var.name), var.tags)}"
+  tags = merge(map("Name", var.name), var.tags)
 }

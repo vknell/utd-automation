@@ -1,6 +1,4 @@
-provider "panos" {
-  version = "1.6"
-}
+provider "panos" {}
 
 resource "panos_ethernet_interface" "untrust" {
   name                      = "ethernet1/1"

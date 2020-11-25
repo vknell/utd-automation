@@ -15,13 +15,13 @@
 ############################################################################################
 
 provider "aws" {
-  region  = "${var.aws_region_name}"
-  version = "2.7"
+  region  = var.aws_region_name
+  version = "3.17"
 }
 
 resource "aws_key_pair" "ssh_key" {
   key_name   = "UTD-PANW-AWS"
-  public_key = "${file(var.public_key_file)}"
+  public_key = file(var.public_key_file)
 }
 
 module "bootstrap_bucket" {
@@ -36,14 +36,14 @@ module "vpc" {
 
   name = "UTD-PANW-AWS"
   cidr = "10.5.0.0/16"
-  az   = "${var.aws_az_name}"
+  az   = var.aws_az_name
 
   mgmt_subnet   = "10.5.0.0/24"
   public_subnet = "10.5.1.0/24"
   web_subnet    = "10.5.2.0/24"
   db_subnet     = "10.5.3.0/24"
 
-  tags {
+  tags = {
     Environment = "UTD-PANW-AWS"
   }
 }
@@ -53,80 +53,78 @@ module "firewall" {
 
   name = "vm-series"
 
-  ssh_key_name = "${aws_key_pair.ssh_key.key_name}"
-  vpc_id       = "${module.vpc.vpc_id}"
+  ssh_key_name = aws_key_pair.ssh_key.key_name
+  vpc_id       = module.vpc.vpc_id
 
-  fw_mgmt_subnet_id = "${module.vpc.mgmt_subnet_id}"
+  fw_mgmt_subnet_id = module.vpc.mgmt_subnet_id
   fw_mgmt_ip        = "10.5.0.4"
-  fw_mgmt_sg_id     = "${aws_security_group.firewall_mgmt_sg.id}"
+  fw_mgmt_sg_id     = aws_security_group.firewall_mgmt_sg.id
 
-  fw_eth1_subnet_id = "${module.vpc.public_subnet_id}"
-  fw_eth2_subnet_id = "${module.vpc.web_subnet_id}"
-  fw_eth3_subnet_id = "${module.vpc.db_subnet_id}"
+  fw_eth1_subnet_id = module.vpc.public_subnet_id
+  fw_eth2_subnet_id = module.vpc.web_subnet_id
+  fw_eth3_subnet_id = module.vpc.db_subnet_id
 
-  fw_dataplane_sg_id = "${aws_security_group.public_sg.id}"
+  fw_dataplane_sg_id = aws_security_group.public_sg.id
 
   # fw_version          = "9.0"
   # fw_product_code     = "806j2of0qy5osgjjixq9gqc6g"
-  # fw_bootstrap_bucket = "${module.bootstrap_bucket.bootstrap_bucket_name}"
+  # fw_bootstrap_bucket = module.bootstrap_bucket.bootstrap_bucket_name
 
-  # Done
-  fw_version          = "9.1"
-  fw_product_code     = "hd44w1chf26uv4p52cdynb2o"
-  fw_bootstrap_bucket = "${module.bootstrap_bucket.bootstrap_bucket_name}"
-
-  # Done
-  # fw_version          = "10.0"
+  # fw_version          = "9.1"
   # fw_product_code     = "hd44w1chf26uv4p52cdynb2o"
-  # fw_bootstrap_bucket = "${module.bootstrap_bucket.bootstrap_bucket_name}"
+  # fw_bootstrap_bucket = module.bootstrap_bucket.bootstrap_bucket_name
 
-  tags {
+  fw_version          = "10.0"
+  fw_product_code     = "hd44w1chf26uv4p52cdynb2o"
+  fw_bootstrap_bucket = module.bootstrap_bucket.bootstrap_bucket_name
+
+  tags = {
     Environment = "UTD-PANW-AWS"
   }
 }
 
 resource "aws_route_table" "web" {
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = module.vpc.vpc_id
 
-  tags {
+  tags = {
     Name = "${module.vpc.name}-WebRouteTable"
   }
 }
 
 resource "aws_route" "web_default" {
-  route_table_id         = "${aws_route_table.web.id}"
+  route_table_id         = aws_route_table.web.id
   destination_cidr_block = "0.0.0.0/0"
-  network_interface_id   = "${module.firewall.fw_eth2_id}"
+  network_interface_id   = module.firewall.fw_eth2_id
 }
 
 resource "aws_route_table_association" "web_assoc" {
-  subnet_id      = "${module.vpc.web_subnet_id}"
-  route_table_id = "${aws_route_table.web.id}"
+  subnet_id      = module.vpc.web_subnet_id
+  route_table_id = aws_route_table.web.id
 }
 
 resource "aws_route_table" "db" {
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = module.vpc.vpc_id
 
-  tags {
+  tags = {
     Name = "${module.vpc.name}-DbRouteTable"
   }
 }
 
 resource "aws_route" "db_default" {
-  route_table_id         = "${aws_route_table.db.id}"
+  route_table_id         = aws_route_table.db.id
   destination_cidr_block = "0.0.0.0/0"
-  network_interface_id   = "${module.firewall.fw_eth3_id}"
+  network_interface_id   = module.firewall.fw_eth3_id
 }
 
 resource "aws_route_table_association" "db_assoc" {
-  subnet_id      = "${module.vpc.db_subnet_id}"
-  route_table_id = "${aws_route_table.db.id}"
+  subnet_id      = module.vpc.db_subnet_id
+  route_table_id = aws_route_table.db.id
 }
 
 resource "aws_security_group" "public_sg" {
   name        = "Public Security Group"
   description = "Wide open security group for firewall external interfaces."
-  vpc_id      = "${module.vpc.vpc_id}"
+  vpc_id      = module.vpc.vpc_id
 
   ingress {
     from_port   = "0"
@@ -146,27 +144,27 @@ resource "aws_security_group" "public_sg" {
 resource "aws_security_group" "firewall_mgmt_sg" {
   name        = "FirewallMgmtSG"
   description = "Firewall Management Security Group"
-  vpc_id      = "${module.vpc.vpc_id}"
+  vpc_id      = module.vpc.vpc_id
 
   ingress {
     to_port     = "22"
     from_port   = "22"
     protocol    = "tcp"
-    cidr_blocks = ["${var.allowed_mgmt_cidr}"]
+    cidr_blocks = var.allowed_mgmt_cidr
   }
 
   ingress {
     to_port     = "443"
     from_port   = "443"
     protocol    = "tcp"
-    cidr_blocks = ["${var.allowed_mgmt_cidr}"]
+    cidr_blocks = var.allowed_mgmt_cidr
   }
 
   ingress {
     to_port     = "0"
     from_port   = "8"
     protocol    = "icmp"
-    cidr_blocks = ["${var.allowed_mgmt_cidr}"]
+    cidr_blocks = var.allowed_mgmt_cidr
   }
 
   egress {
@@ -180,11 +178,11 @@ resource "aws_security_group" "firewall_mgmt_sg" {
 module "web" {
   source       = "./modules/web"
   name         = "web-vm"
-  ssh_key_name = "${aws_key_pair.ssh_key.key_name}"
-  subnet_id    = "${module.vpc.web_subnet_id}"
+  ssh_key_name = aws_key_pair.ssh_key.key_name
+  subnet_id    = module.vpc.web_subnet_id
   private_ip   = "10.5.2.5"
 
-  tags {
+  tags = {
     Environment = "UTD-PANW-AWS"
     server-type = "web"
   }
@@ -193,11 +191,11 @@ module "web" {
 module "db" {
   source       = "./modules/db"
   name         = "db-vm"
-  ssh_key_name = "${aws_key_pair.ssh_key.key_name}"
-  subnet_id    = "${module.vpc.db_subnet_id}"
+  ssh_key_name = aws_key_pair.ssh_key.key_name
+  subnet_id    = module.vpc.db_subnet_id
   private_ip   = "10.5.3.5"
 
-  tags {
+  tags = {
     Environment = "UTD-PANW-AWS"
     server-type = "database"
   }
@@ -206,9 +204,9 @@ module "db" {
 #module "scale" {
 #  source                = "./modules/scale"
 #  name                  = "db-vm"
-#  ssh_key_name          = "${aws_key_pair.ssh_key.key_name}"
-#  subnet_id             = "${module.vpc.db_subnet_id}"
-#  tags {
+#  ssh_key_name          = aws_key_pair.ssh_key.key_name
+#  subnet_id             = module.vpc.db_subnet_id
+#  tags = {
 #    Environment         = "UTD-PANW-AWS"
 #    server-type         = "database"
 #  }

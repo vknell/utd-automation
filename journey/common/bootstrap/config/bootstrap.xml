@@ -1,17 +1,28 @@
 <?xml version="1.0"?>
-<config version="9.1.0" urldb="paloaltonetworks">
+<config version="10.0.2" urldb="paloaltonetworks">
   <mgt-config>
     <users>
       <entry name="admin">
-        <phash>$1$poiddjri$h72yhfgryxLmPBFHDZ3zT.</phash>
+        <phash>$1$poqstpuh$3.6z4SQDlhlwivel7a4WB1</phash>
         <permissions>
           <role-based>
             <superuser>yes</superuser>
           </role-based>
         </permissions>
-        <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFDQVFEQ1VLdUkxS2JPOHJFTC81ZG94ajVZcFdMSzNPWVRrRUJuNnJqWll4UnRqTERLR1RlbGRjUC9FL09RREdzUEVHb0g5L2NMU3VoOGdiV1ZxUG43SjB2VUdGcTZqdlRLQmlVb21TUGZUazRoaG0wdnpwVkhmbHI5VWJLanllNVVOYW1BN2tQVSsyb0JkK01QbXd5MExnaG1ETzFGMTJCb0pld3cxcE5uekdtSEdLQlFjZ2pDM1FBcEJuN1F5QmlacW5RMExBREQwWWY0VTZ2WERmOU5hZ21IdWI5cjRES0NZbVg4TzUxTXhvcDZxMzBnRmdncGs1NlZiQTNJTWl5MTJWSHlLN1pSVWpJMHRDdzhlZ1NxOVVleUlIOEwwVGMyQjJvdXZkTnVlZXF6NWI3TEtGeTdvSUpYdXhmTGVBYzZIdmpDZTRieERLdmRDWExHaFJvR3laOFBJdG9xSkZudUViS0V6RTZ0M2hHNFdkZVlrL2NUTFVyWVRlY20yQjg1aFZKaWNyS2RKclRmb0QvTVdzOUZXR1VkOW50dW5vbE5kVkc5Ti85WjlWbmtDNlBPYTA5NVFTVy9nRXk5ZDdBYzFFNllpZ1NINTQyakxIRVB1QmluWVJBeHZXV0xwWUljVGZvL2crWVdINEVEQVQya2haS0dpbk81YXNGbktpSTd1cDJRQ1g4ZVcwREtVVHRiN2dNRU5VaHdvUXdRREljcEg4Y0tvRC9lMTVCdzBmdStRYlROQVVnd0lJU0I3SlZhMkphaE8rL1pWY3EvcmtmeERwRGZna0Y0OG83WGxZcjVJd0doQlB1SnRXNDRYOEI4eWdqcURnaXJpRUdkUGJLS2VWbCtiYVp5c3plQktCMnVqbjBoaG44S0loQnI2Y0ZadEVKaUFSbmVJN2w2YlE9PSBVVEQtUEFOVy1BV1M=</public-key>
+      </entry>
+      <entry name="student">
+        <phash>$1$qfghdxjj$9wZEwL7lkZxw6BqPciAZ1/</phash>
+        <permissions>
+          <role-based>
+            <superuser>yes</superuser>
+          </role-based>
+        </permissions>
       </entry>
     </users>
+    <password-complexity>
+      <enabled>yes</enabled>
+      <minimum-length>8</minimum-length>
+    </password-complexity>
   </mgt-config>
   <shared>
     <application/>
@@ -250,7 +261,7 @@
           <type>
             <dhcp-client>
               <send-hostname>yes</send-hostname>
-              <send-client-id>yes</send-client-id>
+              <send-client-id>no</send-client-id>
               <accept-dhcp-hostname>no</accept-dhcp-hostname>
               <accept-dhcp-domain>no</accept-dhcp-domain>
             </dhcp-client>
@@ -259,21 +270,50 @@
           <update-schedule>
             <threats>
               <recurring>
-                <weekly>
-                  <day-of-week>wednesday</day-of-week>
-                  <at>01:02</at>
-                  <action>download-only</action>
-                </weekly>
+                <daily>
+                  <at>03:00</at>
+                  <action>download-and-install</action>
+                </daily>
               </recurring>
             </threats>
+            <anti-virus>
+              <recurring>
+                <daily>
+                  <at>02:00</at>
+                  <action>download-and-install</action>
+                </daily>
+              </recurring>
+            </anti-virus>
+            <wildfire>
+              <recurring>
+                <real-time/>
+              </recurring>
+            </wildfire>
           </update-schedule>
-          <timezone>Etc/UTC</timezone>
+          <timezone>UTC</timezone>
           <service>
             <disable-telnet>yes</disable-telnet>
             <disable-http>yes</disable-http>
           </service>
-          <hostname>lab-fw</hostname>
+          <hostname>lab-fwl</hostname>
+          <device-telemetry>
+            <device-health-performance>yes</device-health-performance>
+            <product-usage>yes</product-usage>
+            <threat-prevention>yes</threat-prevention>
+            <region>Americas</region>
+          </device-telemetry>
+          <domain>panwlabs.net</domain>
+          <dns-setting>
+            <servers>
+              <primary>8.8.8.8</primary>
+              <secondary>8.8.4.4</secondary>
+            </servers>
+          </dns-setting>
           <login-banner>UTD Automation: Palo Alto Networks VM-Series</login-banner>
+          <motd-and-banner>
+            <motd-enable>yes</motd-enable>
+            <message>Pew Pew Pew</message>
+          </motd-and-banner>
         </system>
         <setting>
           <config>
@@ -282,18 +322,14 @@
           <management>
             <hostname-type-in-syslog>FQDN</hostname-type-in-syslog>
             <initcfg>
-              <public-key>c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFDQVFEQ1VLdUkxS2JPOHJFTC81ZG94ajVZcFdMSzNPWVRrRUJuNnJqWll4UnRqTERLR1RlbGRjUC9FL09RREdzUEVHb0g5L2NMU3VoOGdiV1ZxUG43SjB2VUdGcTZqdlRLQmlVb21TUGZUazRoaG0wdnpwVkhmbHI5VWJLanllNVVOYW1BN2tQVSsyb0JkK01QbXd5MExnaG1ETzFGMTJCb0pld3cxcE5uekdtSEdLQlFjZ2pDM1FBcEJuN1F5QmlacW5RMExBREQwWWY0VTZ2WERmOU5hZ21IdWI5cjRES0NZbVg4TzUxTXhvcDZxMzBnRmdncGs1NlZiQTNJTWl5MTJWSHlLN1pSVWpJMHRDdzhlZ1NxOVVleUlIOEwwVGMyQjJvdXZkTnVlZXF6NWI3TEtGeTdvSUpYdXhmTGVBYzZIdmpDZTRieERLdmRDWExHaFJvR3laOFBJdG9xSkZudUViS0V6RTZ0M2hHNFdkZVlrL2NUTFVyWVRlY20yQjg1aFZKaWNyS2RKclRmb0QvTVdzOUZXR1VkOW50dW5vbE5kVkc5Ti85WjlWbmtDNlBPYTA5NVFTVy9nRXk5ZDdBYzFFNllpZ1NINTQyakxIRVB1QmluWVJBeHZXV0xwWUljVGZvL2crWVdINEVEQVQya2haS0dpbk81YXNGbktpSTd1cDJRQ1g4ZVcwREtVVHRiN2dNRU5VaHdvUXdRREljcEg4Y0tvRC9lMTVCdzBmdStRYlROQVVnd0lJU0I3SlZhMkphaE8rL1pWY3EvcmtmeERwRGZna0Y0OG83WGxZcjVJd0doQlB1SnRXNDRYOEI4eWdqcURnaXJpRUdkUGJLS2VWbCtiYVp5c3plQktCMnVqbjBoaG44S0loQnI2Y0ZadEVKaUFSbmVJN2w2YlE9PSBVVEQtUEFOVy1BV1M=</public-key>
               <type>
                 <dhcp-client>
                   <send-hostname>yes</send-hostname>
-                  <send-client-id>yes</send-client-id>
+                  <send-client-id>no</send-client-id>
                   <accept-dhcp-hostname>no</accept-dhcp-hostname>
                   <accept-dhcp-domain>no</accept-dhcp-domain>
                 </dhcp-client>
               </type>
-              <hostname>lab-fw</hostname>
-              <dns-primary>8.8.8.8</dns-primary>
-              <dns-secondary>8.8.4.4</dns-secondary>
             </initcfg>
           </management>
         </setting>
