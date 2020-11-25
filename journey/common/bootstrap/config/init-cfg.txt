@@ -19,5 +19,3 @@ dhcp-send-hostname=yes
 dhcp-send-client-id=yes
 dhcp-accept-server-hostname=no
 dhcp-accept-server-domain=no
-vm-series-auto-registration-pin-id=
-vm-series-auto-registration-pin-value=
