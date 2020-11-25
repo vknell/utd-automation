@@ -127,8 +127,8 @@ resource "aws_iam_role" "fw_bootstrap_role" {
     {
       "Effect": "Allow",
       "Principal": {
-      "Service": "ec2.amazonaws.com"
-    },
+        "Service": "ec2.amazonaws.com"
+      },
       "Action": "sts:AssumeRole"
     }
   ]
@@ -142,19 +142,19 @@ resource "aws_iam_role_policy" "fw_bootstrap_role_policy" {
   
   policy = <<-EOF
 {
-  "Version" : "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "s3:ListBucket",
-      "Resource": "arn:aws:s3:::var.fw_bootstrap_bucket"
-    },
-    {
-    "Effect": "Allow",
-    "Action": "s3:GetObject",
-    "Resource": "arn:aws:s3:::var.fw_bootstrap_bucket/*"
-    }
-  ]
+   "Version": "2012-10-17", 
+   "Statement": [ 
+   { 
+      "Effect": "Allow", 
+      "Action": ["s3:ListBucket"], 
+      "Resource": ["arn:aws:s3:::var.fw_bootstrap_bucket"] 
+   }, 
+   { 
+      "Effect": "Allow", 
+      "Action": ["s3:GetObject"], 
+      "Resource": ["arn:aws:s3:::var.fw_bootstrap_bucket/*"] 
+      } 
+   ] 
 }
 EOF
 }
