@@ -39,7 +39,7 @@ variable "student_name" {
   description = "The student name"
   type        = string
   validation {
-    condition     = can(regex("^Student", var.student_name))
-    error_message = "The name must start with \"Student\" and the digit of your pod."
+    condition     = can(regex("^[sS]tudent\\d+$", var.student_name))
+    error_message = "The name must start with \"Student\" followed by a digit."
   }
 }

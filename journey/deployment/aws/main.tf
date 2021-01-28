@@ -204,7 +204,7 @@ module "db" {
 
 #module "scale" {
 #  source                = "./modules/scale"
-#  name                  = "db-vm"
+#  name                  = "db-vm-${var.student_name}"
 #  ssh_key_name          = aws_key_pair.ssh_key.key_name
 #  subnet_id             = module.vpc.db_subnet_id
 #  tags = {
