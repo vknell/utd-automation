@@ -3,6 +3,9 @@ resource "aws_s3_bucket" "bootstrap_bucket" {
   bucket_prefix = "automation"
   acl           = "private"
  
+  versioning {
+    enabled = true
+  }
 }
 # Création d'objets bootstrap
 resource "aws_s3_bucket_object" "bootstrap_init_cfg" {
